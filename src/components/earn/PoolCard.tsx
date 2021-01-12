@@ -9,7 +9,7 @@ import { ButtonPrimary } from '../Button';
 import { StakingInfo } from '../../state/stake/hooks';
 import { useColor } from '../../hooks/useColor';
 import { currencyId } from '../../utils/currencyId';
-import { Break, CardNoise, CardBGImage } from './styled';
+import { Break, CardNoise } from './styled';
 import { unwrappedToken } from '../../utils/wrappedCurrency';
 import { useTotalSupply } from '../../data/TotalSupply';
 import { usePair } from '../../data/Reserves';
@@ -108,9 +108,7 @@ export default function PoolCard({ stakingInfo }: { stakingInfo: StakingInfo }) 
 
   return (
     <Wrapper showBackground={isStaking} bgColor={backgroundColor}>
-      <CardBGImage desaturate />
       <CardNoise />
-
       <TopSection>
         <DoubleCurrencyLogo currency0={currency0} currency1={currency1} size={24} />
         <TYPE.white fontWeight={600} fontSize={24} style={{ marginLeft: '8px' }}>
@@ -123,7 +121,6 @@ export default function PoolCard({ stakingInfo }: { stakingInfo: StakingInfo }) 
           </ButtonPrimary>
         </StyledInternalLink>
       </TopSection>
-
       <StatContainer>
         <RowBetween>
           <TYPE.white> Total deposited</TYPE.white>
@@ -146,7 +143,6 @@ export default function PoolCard({ stakingInfo }: { stakingInfo: StakingInfo }) 
           </TYPE.white>
         </RowBetween>
       </StatContainer>
-
       {isStaking && (
         <>
           <Break />

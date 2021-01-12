@@ -15,7 +15,7 @@ import useENS from '../../hooks/useENS';
 import { useActiveWeb3React } from '../../hooks';
 import { isAddress } from 'ethers/lib/utils';
 import Confetti from '../Confetti';
-import { CardNoise, CardBGImageSmaller } from '../earn/styled';
+import { CardNoise } from '../earn/styled';
 import { useIsTransactionPending } from '../../state/transactions/hooks';
 import { TokenAmount } from '@uniswap/sdk';
 import { getEtherscanLink, shortenAddress } from '../../utils';
@@ -127,7 +127,6 @@ export default function AddressClaimModal({ isOpen, onDismiss }: { isOpen: boole
       {(attempting || claimConfirmed) && (
         <ConfirmOrLoadingWrapper>
           <CardNoise />
-          <CardBGImageSmaller desaturate />
           <RowBetween>
             <div />
             <CloseIcon onClick={wrappedOnDismiss} style={{ zIndex: 99 }} stroke="black" />

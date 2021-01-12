@@ -22,33 +22,6 @@ export const DataCard = styled(AutoColumn)<{ disabled?: boolean }>`
   color: ${({ theme }) => theme.text1};
 `;
 
-export const CardBGImage = styled.span<{ desaturate?: boolean }>`
-  width: 1000px;
-  height: 600px;
-  position: absolute;
-  border-radius: 12px;
-  opacity: 0.4;
-  top: -100px;
-  left: -100px;
-  transform: rotate(-15deg);
-  user-select: none;
-
-  ${({ desaturate }) => desaturate && `filter: saturate(0)`}
-`;
-
-export const CardBGImageSmaller = styled.span<{ desaturate?: boolean }>`
-  width: 1200px;
-  height: 1200px;
-  position: absolute;
-  border-radius: 12px;
-  top: -300px;
-  left: -300px;
-  opacity: 0.4;
-  user-select: none;
-
-  ${({ desaturate }) => desaturate && `filter: saturate(0)`}
-`;
-
 export const CardNoise = styled.span`
   background-size: cover;
   mix-blend-mode: overlay;

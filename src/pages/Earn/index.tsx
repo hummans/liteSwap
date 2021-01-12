@@ -60,15 +60,15 @@ export default function Earn() {
           <CardSection>
             <AutoColumn gap="md">
               <RowBetween>
-                <TYPE.white fontWeight={600}>Luckyswap liquidity mining</TYPE.white>
+                <TYPE.largeHeader>Luckyswap liquidity mining</TYPE.largeHeader>
               </RowBetween>
               <RowBetween>
-                <TYPE.white fontSize={14}>
-                  Deposit your Liquidity Provider tokens to receive LUCK, the Luckyswap protocol governance token.
-                </TYPE.white>
+                <TYPE.body>
+                  {`Deposit your Liquidity Provider tokens to receive LUCK, the Luckyswap protocol governance token.`}
+                </TYPE.body>
               </RowBetween>{' '}
-              <ExternalLink style={{ color: 'white', textDecoration: 'underline' }} href="#" target="_blank">
-                <TYPE.white fontSize={14}>More about LUCK</TYPE.white>
+              <ExternalLink style={{ textDecoration: 'underline' }} href="#" target="_blank">
+                <TYPE.link>About LUCK</TYPE.link>
               </ExternalLink>
             </AutoColumn>
           </CardSection>

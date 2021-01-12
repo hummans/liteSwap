@@ -15,7 +15,7 @@ import { getEtherscanLink } from '../../utils';
 import { ButtonPrimary } from '../Button';
 import { AutoColumn, ColumnCenter } from '../Column';
 import Confetti from '../Confetti';
-import { Break, CardBGImage, CardBGImageSmaller, CardNoise, CardSection, DataCard } from '../earn/styled';
+import { Break, CardNoise, CardSection, DataCard } from '../earn/styled';
 
 import Modal from '../Modal';
 import { RowBetween } from '../Row';
@@ -26,7 +26,7 @@ const ContentWrapper = styled(AutoColumn)`
 
 const ModalUpper = styled(DataCard)`
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  background: radial-gradient(76.02% 75.41% at 1.84% 0%, #ff007a 0%, #021d43 100%);
+  background: radial-gradient(76.02% 75.41% at 1.84% 0%, #08bd5c 0%, #021d43 100%);
 `;
 
 const ConfirmOrLoadingWrapper = styled.div<{ activeBG: boolean }>`
@@ -35,7 +35,7 @@ const ConfirmOrLoadingWrapper = styled.div<{ activeBG: boolean }>`
   position: relative;
   background: ${({ activeBG }) =>
     activeBG &&
-    'radial-gradient(76.02% 75.41% at 1.84% 0%, rgba(255, 0, 122, 0.2) 0%, rgba(33, 114, 229, 0.2) 100%), #FFFFFF;'};
+    'radial-gradient(76.02% 75.41% at 1.84% 0%, rgba(0, 255, 122, 0.1) 0%, rgba(33, 114, 229, 0.2) 100%), #FFFFFF;'};
 `;
 
 const ConfirmedIcon = styled(ColumnCenter)`
@@ -94,7 +94,6 @@ export default function ClaimModal() {
       {!attempting && !claimConfirmed && (
         <ContentWrapper gap="lg">
           <ModalUpper>
-            <CardBGImage />
             <CardNoise />
             <CardSection gap="md">
               <RowBetween>
@@ -155,7 +154,6 @@ export default function ClaimModal() {
       {(attempting || claimConfirmed) && (
         <ConfirmOrLoadingWrapper activeBG={true}>
           <CardNoise />
-          <CardBGImageSmaller desaturate />
           <RowBetween>
             <div />
             <CloseIcon onClick={toggleClaimModal} style={{ zIndex: 99 }} stroke="black" />
@@ -173,7 +171,7 @@ export default function ClaimModal() {
                 {claimConfirmed ? 'Claimed!' : 'Claiming'}
               </TYPE.largeHeader>
               {!claimConfirmed && (
-                <Text fontSize={36} color={'#ff007a'} fontWeight={800}>
+                <Text fontSize={36} color={'#08BD5C'} fontWeight={800}>
                   {unclaimedAmount?.toFixed(0, { groupSeparator: ',' } ?? '-')} UNI
                 </Text>
               )}
