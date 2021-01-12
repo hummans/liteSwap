@@ -4,22 +4,20 @@
 
 An open source decentralized exchange of Ethereum tokens
 
-<!-- - Website: []() -->
-<!-- - Interface: []() -->
-<!-- - Docs: []() -->
+<!-- Without surveillance -->
 
 ## Development
 
 ### Install Dependencies
 
 ```bash
-yarn install
+yarn
 ```
 
 or
 
 ```bash
-npm install
+npm i
 ```
 
 ### Run

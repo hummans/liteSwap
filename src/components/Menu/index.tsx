@@ -1,12 +1,11 @@
 import React, { useRef } from 'react';
-import { BookOpen, Code, Info, PieChart } from 'react-feather';
+import { Code, PieChart } from 'react-feather';
 import styled from 'styled-components';
 import { ReactComponent as MenuIcon } from '../../assets/images/menu.svg';
 import { useActiveWeb3React } from '../../hooks';
 import { useOnClickOutside } from '../../hooks/useOnClickOutside';
 import { ApplicationModal } from '../../state/application/actions';
 import { useModalOpen, useToggleModal } from '../../state/application/hooks';
-
 import { ExternalLink } from '../../theme';
 import { ButtonPrimary } from '../Button';
 
@@ -103,15 +102,7 @@ export default function Menu() {
 
       {open && (
         <MenuFlyout>
-          <MenuItem id="link" href="#">
-            <Info size={14} />
-            About
-          </MenuItem>
-          <MenuItem id="link" href="#">
-            <BookOpen size={14} />
-            Docs
-          </MenuItem>
-          <MenuItem id="link" href="">
+          <MenuItem id="link" href="https://github.com/NotEternal/luckyswap">
             <Code size={14} />
             Code
           </MenuItem>

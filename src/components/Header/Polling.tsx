@@ -9,32 +9,27 @@ import { useActiveWeb3React } from '../../hooks';
 const StyledPolling = styled.div`
   position: fixed;
   display: flex;
-  right: 0.4rem;
+  right: 0.5rem;
   bottom: 0.4rem;
   padding: 1rem;
   color: white;
-  font-size: 1.5em;
+  font-size: 2em;
   transition: opacity 0.2s ease;
-  color: ${({ theme }) => theme.primary1};
-
-  :hover {
-    opacity: 1;
-  }
+  color: ${({ theme }) => theme.text1};
 
   ${({ theme }) => theme.mediaWidth.upToMedium`
     display: none;
   `}
 `;
 const StyledPollingDot = styled.div`
-  width: 12px;
-  height: 12px;
-  min-height: 12px;
-  min-width: 12px;
+  width: 13px;
+  height: 13px;
+  min-height: 13px;
+  min-width: 13px;
   margin-left: 0.5rem;
-  margin-top: 1px;
   border-radius: 50%;
   position: relative;
-  background-color: ${({ theme }) => theme.primary1};
+  background-color: ${({ theme }) => theme.text1};
 `;
 
 const rotate360 = keyframes`
@@ -53,10 +48,10 @@ const Spinner = styled.div`
   border-top: 1px solid transparent;
   border-right: 1px solid transparent;
   border-bottom: 1px solid transparent;
-  border-left: 2px solid ${({ theme }) => theme.primary1};
+  border-left: 2px solid ${({ theme }) => theme.text1};
   background: transparent;
-  width: 18px;
-  height: 18px;
+  width: 19px;
+  height: 19px;
   border-radius: 50%;
   position: relative;
 
@@ -85,7 +80,7 @@ export default function Polling() {
   return (
     <ExternalLink href={chainId && blockNumber ? getEtherscanLink(chainId, blockNumber.toString(), 'block') : ''}>
       <StyledPolling>
-        <TYPE.small style={{ opacity: isMounted ? '0.2' : '0.6' }}>{blockNumber}</TYPE.small>
+        <TYPE.small style={{ opacity: isMounted ? '0.5' : '1' }}>{blockNumber}</TYPE.small>
         <StyledPollingDot>{!isMounted && <Spinner />}</StyledPollingDot>
       </StyledPolling>
     </ExternalLink>

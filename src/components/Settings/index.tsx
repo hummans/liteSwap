@@ -127,14 +127,11 @@ export default function SettingsTab() {
   const node = useRef<HTMLDivElement>();
   const open = useModalOpen(ApplicationModal.SETTINGS);
   const toggle = useToggleSettingsMenu();
-
   const theme = useContext(ThemeContext);
+
   const [userSlippageTolerance, setUserslippageTolerance] = useUserSlippageTolerance();
-
   const [ttl, setTtl] = useUserTransactionTTL();
-
   const [expertMode, toggleExpertMode] = useExpertModeManager();
-
   const [darkMode, toggleDarkMode] = useDarkModeManager();
 
   // show confirmation view before turning on

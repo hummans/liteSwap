@@ -262,6 +262,9 @@ export default function Header() {
           <StyledNavLink id={`swap-nav-link`} to={'/swap'}>
             {t('swap')}
           </StyledNavLink>
+          <StyledNavLink id={`send-nav-link`} to={'/send'}>
+            {t('send')}
+          </StyledNavLink>
           <StyledNavLink
             id={`pool-nav-link`}
             to={'/pool'}
@@ -274,9 +277,6 @@ export default function Header() {
             }
           >
             {t('pool')}
-          </StyledNavLink>
-          <StyledNavLink id={`send-nav-link`} to={'/send'}>
-            {t('send')}
           </StyledNavLink>
           <StyledNavLink id={`stake-nav-link`} to={'/luck'}>
             Luck
