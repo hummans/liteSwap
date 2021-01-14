@@ -12,6 +12,7 @@ import { useActiveWeb3React } from '../../hooks';
 import { JSBI } from '@uniswap/sdk';
 import { BIG_INT_ZERO } from '../../constants';
 import { OutlineCard } from '../../components/Card';
+import AppBody from '../AppBody';
 
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
@@ -54,48 +55,50 @@ export default function Earn() {
   const stakingRewardsExist = Boolean(typeof chainId === 'number' && (STAKING_REWARDS_INFO[chainId]?.length ?? 0) > 0);
 
   return (
-    <PageWrapper gap="lg" justify="center">
-      <TopSection gap="md">
-        <DataCard>
-          <CardSection>
-            <AutoColumn gap="md">
-              <RowBetween>
-                <TYPE.largeHeader>Luckyswap liquidity mining</TYPE.largeHeader>
-              </RowBetween>
-              <RowBetween>
-                <TYPE.body>
-                  {`Deposit your Liquidity Provider tokens to receive LUCK, the Luckyswap protocol governance token.`}
-                </TYPE.body>
-              </RowBetween>{' '}
-              <ExternalLink style={{ textDecoration: 'underline' }} href="#" target="_blank">
-                <TYPE.link>About LUCK</TYPE.link>
-              </ExternalLink>
-            </AutoColumn>
-          </CardSection>
-        </DataCard>
-      </TopSection>
+    <AppBody>
+      <PageWrapper gap="lg" justify="center">
+        <TopSection gap="md">
+          <DataCard>
+            <CardSection>
+              <AutoColumn gap="md">
+                <RowBetween>
+                  <TYPE.largeHeader>Luckyswap liquidity mining</TYPE.largeHeader>
+                </RowBetween>
+                <RowBetween>
+                  <TYPE.body>
+                    {`Deposit your Liquidity Provider tokens to receive LUCK, the Luckyswap protocol governance token.`}
+                  </TYPE.body>
+                </RowBetween>{' '}
+                <ExternalLink style={{ textDecoration: 'underline' }} href="#" target="_blank">
+                  <TYPE.link>About LUCK</TYPE.link>
+                </ExternalLink>
+              </AutoColumn>
+            </CardSection>
+          </DataCard>
+        </TopSection>
 
-      <AutoColumn gap="lg" style={{ width: '100%', maxWidth: '720px' }}>
-        <DataRow style={{ alignItems: 'baseline' }}>
-          <TYPE.mediumHeader style={{ marginTop: '0.5rem' }}>Participating pools</TYPE.mediumHeader>
-          <Countdown exactEnd={stakingInfos?.[0]?.periodFinish} />
-        </DataRow>
+        <AutoColumn gap="lg" style={{ width: '100%', maxWidth: '720px' }}>
+          <DataRow style={{ alignItems: 'baseline' }}>
+            <TYPE.mediumHeader style={{ marginTop: '0.5rem' }}>Participating pools</TYPE.mediumHeader>
+            <Countdown exactEnd={stakingInfos?.[0]?.periodFinish} />
+          </DataRow>
 
-        <PoolSection>
-          {stakingRewardsExist && stakingInfos?.length === 0 ? (
-            <Loader style={{ margin: 'auto' }} />
-          ) : !stakingRewardsExist ? (
-            <OutlineCard>No active pools</OutlineCard>
-          ) : stakingInfos?.length !== 0 && stakingInfosWithBalance.length === 0 ? (
-            <OutlineCard>No active pools</OutlineCard>
-          ) : (
-            stakingInfosWithBalance?.map(stakingInfo => {
-              // need to sort by added liquidity here
-              return <PoolCard key={stakingInfo.stakingRewardAddress} stakingInfo={stakingInfo} />;
-            })
-          )}
-        </PoolSection>
-      </AutoColumn>
-    </PageWrapper>
+          <PoolSection>
+            {stakingRewardsExist && stakingInfos?.length === 0 ? (
+              <Loader style={{ margin: 'auto' }} />
+            ) : !stakingRewardsExist ? (
+              <OutlineCard>No active pools</OutlineCard>
+            ) : stakingInfos?.length !== 0 && stakingInfosWithBalance.length === 0 ? (
+              <OutlineCard>No active pools</OutlineCard>
+            ) : (
+              stakingInfosWithBalance?.map(stakingInfo => {
+                // need to sort by added liquidity here
+                return <PoolCard key={stakingInfo.stakingRewardAddress} stakingInfo={stakingInfo} />;
+              })
+            )}
+          </PoolSection>
+        </AutoColumn>
+      </PageWrapper>
+    </AppBody>
   );
 }

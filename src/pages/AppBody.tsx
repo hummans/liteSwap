@@ -16,7 +16,7 @@ export const BodyWrapper = styled.div`
 
 const BodyNavLinks = styled.div`
   position: absolute;
-  top: -27%;
+  top: -6rem;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;

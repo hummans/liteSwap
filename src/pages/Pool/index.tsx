@@ -21,6 +21,7 @@ import { Dots } from '../../components/swap/styleds';
 import { CardSection, DataCard } from '../../components/earn/styled';
 import { useStakingInfo } from '../../state/stake/hooks';
 import { BIG_INT_ZERO } from '../../constants';
+import AppBody from '../AppBody';
 
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
@@ -126,7 +127,7 @@ export default function Pool() {
   });
 
   return (
-    <>
+    <AppBody>
       <PageWrapper>
         <SwapPoolTabs active={'pool'} />
 
@@ -217,6 +218,6 @@ export default function Pool() {
           </AutoColumn>
         </AutoColumn>
       </PageWrapper>
-    </>
+    </AppBody>
   );
 }
