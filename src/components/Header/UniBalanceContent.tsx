@@ -2,7 +2,7 @@ import { ChainId, TokenAmount } from '@uniswap/sdk';
 import React, { useMemo } from 'react';
 import { X } from 'react-feather';
 import styled from 'styled-components';
-import tokenLogo from '../../assets/images/token-logo.png';
+import tokenLogo from '../../assets/svg/logo_white.svg';
 import { UNI } from '../../constants';
 import { useTotalSupply } from '../../data/TotalSupply';
 import { useActiveWeb3React } from '../../hooks';
@@ -22,8 +22,7 @@ const ContentWrapper = styled(AutoColumn)`
 `;
 
 const ModalUpper = styled(DataCard)`
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  background: radial-gradient(76.02% 75.41% at 1.84% 0%, #ff007a 0%, #021d43 100%);
+  background: ${({ theme }) => theme.bg1};
   padding: 0.5rem;
 `;
 
@@ -66,7 +65,7 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
         <CardNoise />
         <CardSection gap="md">
           <RowBetween>
-            <TYPE.white color="white">Your UNI Breakdown</TYPE.white>
+            <TYPE.white color="white">Your LUCK Breakdown</TYPE.white>
             <StyledClose stroke="white" onClick={() => setShowUniBalanceModal(false)} />
           </RowBetween>
         </CardSection>
@@ -104,11 +103,11 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
         <CardSection gap="sm">
           <AutoColumn gap="md">
             <RowBetween>
-              <TYPE.white color="white">UNI price:</TYPE.white>
+              <TYPE.white color="white">LUCK price:</TYPE.white>
               <TYPE.white color="white">${uniPrice?.toFixed(2) ?? '-'}</TYPE.white>
             </RowBetween>
             <RowBetween>
-              <TYPE.white color="white">UNI in circulation:</TYPE.white>
+              <TYPE.white color="white">LUCK in circulation:</TYPE.white>
               <TYPE.white color="white">{circulation?.toFixed(0, { groupSeparator: ',' })}</TYPE.white>
             </RowBetween>
             <RowBetween>
@@ -116,7 +115,7 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
               <TYPE.white color="white">{totalSupply?.toFixed(0, { groupSeparator: ',' })}</TYPE.white>
             </RowBetween>
             {uni && uni.chainId === ChainId.MAINNET ? (
-              <ExternalLink href={`#${uni.address}`}>View UNI Analytics</ExternalLink>
+              <ExternalLink href={`#${uni.address}`}>View Analytics</ExternalLink>
             ) : null}
           </AutoColumn>
         </CardSection>

@@ -1,20 +1,89 @@
 import React from 'react';
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export const BodyWrapper = styled.div`
   position: relative;
-  max-width: 420px;
+  max-width: 480px;
   width: 100%;
   padding: 1.5rem;
-  border-radius: 30px;
+  border-radius: 2.2em;
   box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.01), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04),
     0px 24px 32px rgba(0, 0, 0, 0.01);
   background: ${({ theme }) => theme.bg1};
 `;
 
-/**
- * The styled container element that wraps the content of most pages and the tabs.
- */
+const BodyNavLinks = styled.div`
+  position: absolute;
+  top: -27%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 3rem;
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.01), 0px 4px 8px rgba(0, 0, 0, 0.04);
+  background-color: ${({ theme }) => theme.bg1};
+`;
+
+const activeClassName = 'ACTIVE';
+
+const StyledNavLink = styled(NavLink).attrs({
+  activeClassName
+})`
+  ${({ theme }) => theme.flexRowNoWrap}
+  align-items: left;
+  border-radius: 3rem;
+  outline: none;
+  cursor: pointer;
+  padding: 1.2rem 2.2rem;
+  text-decoration: none;
+  color: ${({ theme }) => theme.text3};
+  font-size: 1.3rem;
+  width: fit-content;
+  font-weight: 500;
+  transition: 0.2s;
+
+  &.${activeClassName}, :hover,
+  :focus {
+    color: ${({ theme }) => theme.primary1};
+    background-color: ${({ theme }) => theme.advancedBG};
+  }
+`;
+
 export default function AppBody({ children }: { children: React.ReactNode }) {
-  return <BodyWrapper>{children}</BodyWrapper>;
+  const { t } = useTranslation();
+
+  return (
+    <BodyWrapper>
+      <BodyNavLinks>
+        <StyledNavLink id={`swap-nav-link`} to={'/swap'}>
+          {t('swap')}
+        </StyledNavLink>
+        <StyledNavLink id={`send-nav-link`} to={'/send'}>
+          {t('send')}
+        </StyledNavLink>
+        <StyledNavLink
+          id={`pool-nav-link`}
+          to={'/pool'}
+          isActive={(match, { pathname }) =>
+            Boolean(match) ||
+            pathname.startsWith('/add') ||
+            pathname.startsWith('/remove') ||
+            pathname.startsWith('/create') ||
+            pathname.startsWith('/find')
+          }
+        >
+          {t('pool')}
+        </StyledNavLink>
+        <StyledNavLink id={`stake-nav-link`} to={'/luck'}>
+          Luck
+        </StyledNavLink>
+      </BodyNavLinks>
+
+      {children}
+    </BodyWrapper>
+  );
 }

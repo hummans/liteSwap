@@ -1,10 +1,6 @@
 import { ChainId, TokenAmount } from '@uniswap/sdk';
 import React, { useState } from 'react';
 import { Text } from 'rebass';
-import { NavLink } from 'react-router-dom';
-import { darken } from 'polished';
-import { useTranslation } from 'react-i18next';
-
 import styled from 'styled-components';
 
 import Logo from '../../assets/svg/logo.svg';
@@ -15,12 +11,11 @@ import { useETHBalances, useAggregateUniBalance } from '../../state/wallet/hooks
 import { CardNoise } from '../earn/styled';
 import { CountUp } from 'use-count-up';
 import { TYPE } from '../../theme';
-
 import { OutlineCard } from '../Card';
 import Settings from '../Settings';
 import Menu from '../Menu';
 
-import Row, { RowFixed } from '../Row';
+import { RowFixed } from '../Row';
 import Web3Status from '../Web3Status';
 import ClaimModal from '../claim/ClaimModal';
 import { useUserHasAvailableClaim } from '../../state/claim/hooks';
@@ -31,18 +26,17 @@ import usePrevious from '../../hooks/usePrevious';
 const HeaderFrame = styled.div`
   display: grid;
   grid-template-columns: 1fr 120px;
-  align-items: center;
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
   width: 100%;
   top: 0;
   position: relative;
-  border-radius: 0 0 1.6rem 1.6rem;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  background-color: rgba(0, 0, 0, 0.05);
-  padding: 2rem;
+  padding: 1rem;
   z-index: 2;
+  border-bottom: 1px solid ${({ theme }) => theme.primary4};
+  background-color: ${({ theme }) => theme.bg1};
+
   ${({ theme }) => theme.mediaWidth.upToMedium`
     grid-template-columns: 1fr;
     padding: 0.8rem .6rem;
@@ -100,15 +94,6 @@ const HeaderRow = styled(RowFixed)`
   ${({ theme }) => theme.mediaWidth.upToMedium`
    width: 100%;
   `};
-`;
-
-const HeaderLinks = styled(Row)`
-  justify-content: center;
-
-  ${({ theme }) => theme.mediaWidth.upToMedium`
-    padding: 1rem 0 1rem 1rem;
-    justify-content: flex-end;
-`};
 `;
 
 const AccountElement = styled.div<{ active: boolean }>`
@@ -197,36 +182,6 @@ const LUCKIcon = styled.div`
   }
 `;
 
-const activeClassName = 'ACTIVE';
-
-const StyledNavLink = styled(NavLink).attrs({
-  activeClassName
-})`
-  ${({ theme }) => theme.flexRowNoWrap}
-  align-items: left;
-  border-radius: 3rem;
-  outline: none;
-  cursor: pointer;
-  text-decoration: none;
-  color: ${({ theme }) => theme.text3};
-  font-size: 1.3rem;
-  width: fit-content;
-  margin: 0 12px;
-  font-weight: 500;
-  transition: 0.2s;
-
-  &.${activeClassName} {
-    border-radius: 12px;
-    font-weight: 600;
-    color: ${({ theme }) => theme.text1};
-  }
-
-  :hover,
-  :focus {
-    color: ${({ theme }) => darken(0.1, theme.text1)};
-  }
-`;
-
 const NETWORK_LABELS: { [chainId in ChainId]?: string } = {
   [ChainId.RINKEBY]: 'Rinkeby',
   [ChainId.ROPSTEN]: 'Ropsten',
@@ -236,7 +191,6 @@ const NETWORK_LABELS: { [chainId in ChainId]?: string } = {
 
 export default function Header() {
   const { account, chainId } = useActiveWeb3React();
-  const { t } = useTranslation();
   const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? ''];
   const [isDark] = useDarkModeManager();
 
@@ -252,37 +206,16 @@ export default function Header() {
       <Modal isOpen={showUniBalanceModal} onDismiss={() => setShowUniBalanceModal(false)}>
         <UniBalanceContent setShowUniBalanceModal={setShowUniBalanceModal} />
       </Modal>
+
       <HeaderRow>
         <Title href=".">
           <LUCKIcon>
-            <img width={'36px'} src={isDark ? LogoDark : Logo} alt="logo" />
+            <img width={'34px'} src={isDark ? LogoDark : Logo} alt="logo" />
           </LUCKIcon>
         </Title>
-        <HeaderLinks>
-          <StyledNavLink id={`swap-nav-link`} to={'/swap'}>
-            {t('swap')}
-          </StyledNavLink>
-          <StyledNavLink id={`send-nav-link`} to={'/send'}>
-            {t('send')}
-          </StyledNavLink>
-          <StyledNavLink
-            id={`pool-nav-link`}
-            to={'/pool'}
-            isActive={(match, { pathname }) =>
-              Boolean(match) ||
-              pathname.startsWith('/add') ||
-              pathname.startsWith('/remove') ||
-              pathname.startsWith('/create') ||
-              pathname.startsWith('/find')
-            }
-          >
-            {t('pool')}
-          </StyledNavLink>
-          <StyledNavLink id={`stake-nav-link`} to={'/luck'}>
-            Luck
-          </StyledNavLink>
-        </HeaderLinks>
+        <TYPE.largeHeader>LUCKYSWAP</TYPE.largeHeader>
       </HeaderRow>
+
       <HeaderControls>
         <HeaderElement>
           <HideSmall>

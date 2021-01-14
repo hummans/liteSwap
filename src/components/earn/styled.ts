@@ -17,7 +17,6 @@ export const DataCard = styled(AutoColumn)<{ disabled?: boolean }>`
   overflow: hidden;
   width: 100%;
   border-radius: 12px;
-  border: 1px solid ${({ theme }) => theme.text4};
   background-color: rgba(0, 0, 0, 0.05);
   color: ${({ theme }) => theme.text1};
 `;

@@ -1,4 +1,3 @@
-import { transparentize } from 'polished';
 import React, { useMemo } from 'react';
 import styled, {
   ThemeProvider as StyledComponentsThemeProvider,
@@ -48,15 +47,15 @@ export function colors(darkMode: boolean): Colors {
     text5: darkMode ? '#2C2F36' : '#EDEEF2',
 
     // backgrounds / greys
-    bg1: darkMode ? '#212329' : '#FFFFFF',
-    bg2: darkMode ? '#272930' : '#F7F8FA',
+    bg1: darkMode ? '#1d1f22' : '#FFFFFF',
+    bg2: darkMode ? '#222329' : '#F7F8FA',
     bg3: darkMode ? '#40444F' : '#EDEEF2',
     bg4: darkMode ? '#565A69' : '#CED0D9',
     bg5: darkMode ? '#6C7284' : '#888D9B',
 
     //specialty colors
     modalBG: darkMode ? 'rgba(0,0,0,.425)' : 'rgba(0,0,0,0.3)',
-    advancedBG: darkMode ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.6)',
+    advancedBG: darkMode ? 'rgba(0,0,0,0.2)' : 'rgba(255,255,255,0.6)',
 
     //primary colors
     primary1: '#08BD5C',
@@ -64,6 +63,7 @@ export function colors(darkMode: boolean): Colors {
     primary3: '#50C386',
     primary4: '#16b35f8f',
     primary5: '#16b35f44',
+    primary6: '#16b35f20',
 
     // color text
     primaryText1: '#08BD5C',
@@ -214,12 +214,7 @@ html {
 
 body {
   min-height: 100vh;
-  background-position: 0 -10vh;
   background-repeat: no-repeat;
-  background-image: ${({ theme }) =>
-    `radial-gradient(50% 50% at 50% 50%, ${transparentize(0.9, theme.primary1)} 0%, ${transparentize(
-      1,
-      theme.bg1
-    )} 100%)`};
+  background: linear-gradient(to bottom, ${({ theme }) => theme.primary6}, ${({ theme }) => theme.bg2})
 }
 `;
