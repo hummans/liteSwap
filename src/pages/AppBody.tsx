@@ -9,8 +9,7 @@ export const BodyWrapper = styled.div`
   width: 100%;
   padding: 1.5rem;
   border-radius: 2.2em;
-  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.01), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04),
-    0px 24px 32px rgba(0, 0, 0, 0.01);
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.01), 0px 4px 8px rgba(0, 0, 0, 0.04);
   background: ${({ theme }) => theme.bg1};
 `;
 
@@ -35,7 +34,6 @@ const StyledNavLink = styled(NavLink).attrs({
 })`
   ${({ theme }) => theme.flexRowNoWrap}
   align-items: left;
-  border-radius: 3rem;
   outline: none;
   cursor: pointer;
   padding: 1.2rem 2.2rem;
@@ -46,10 +44,16 @@ const StyledNavLink = styled(NavLink).attrs({
   font-weight: 500;
   transition: 0.2s;
 
+  :first-child {
+    border-radius: 3rem 0 0 3rem;
+  }
+  :last-child {
+    border-radius: 0 3rem 3rem 0;
+  }
+
   &.${activeClassName}, :hover,
   :focus {
     color: ${({ theme }) => theme.primary1};
-    background-color: ${({ theme }) => theme.advancedBG};
   }
 `;
 

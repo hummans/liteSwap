@@ -22,8 +22,9 @@ const ContentWrapper = styled(AutoColumn)`
 `;
 
 const ModalUpper = styled(DataCard)`
-  background: ${({ theme }) => theme.bg1};
+  border: none;
   padding: 0.5rem;
+  background: ${({ theme }) => theme.bg1};
 `;
 
 const StyledClose = styled(X)`

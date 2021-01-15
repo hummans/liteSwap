@@ -1,6 +1,5 @@
 import { CurrencyAmount, JSBI, Token, Trade } from '@uniswap/sdk';
 import React, { useCallback, useContext, useMemo, useState } from 'react';
-import { ArrowDown } from 'react-feather';
 import { Text } from 'rebass';
 import { ThemeContext } from 'styled-components';
 import AddressInputPanel from '../../components/AddressInputPanel';
@@ -10,9 +9,9 @@ import { AutoColumn } from '../../components/Column';
 import ConfirmSwapModal from '../../components/swap/ConfirmSwapModal';
 import CurrencyInputPanel from '../../components/CurrencyInputPanel';
 import { SwapPoolTabs } from '../../components/NavigationTabs';
-import { AutoRow, RowBetween } from '../../components/Row';
+import { RowBetween } from '../../components/Row';
 import confirmPriceImpactWithoutFee from '../../components/swap/confirmPriceImpactWithoutFee';
-import { ArrowWrapper, BottomGrouping, Wrapper } from '../../components/swap/styleds';
+import { BottomGrouping, Wrapper } from '../../components/swap/styleds';
 import TradePrice from '../../components/swap/TradePrice';
 import TokenWarningModal from '../../components/TokenWarningModal';
 
@@ -30,7 +29,7 @@ import {
   useSwapState
 } from '../../state/swap/hooks';
 import { useExpertModeManager, useUserSlippageTolerance } from '../../state/user/hooks';
-import { LinkStyledButton, TYPE } from '../../theme';
+import { TYPE } from '../../theme';
 import { maxAmountSpend } from '../../utils/maxAmountSpend';
 import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices';
 import AppBody from '../AppBody';
@@ -230,20 +229,8 @@ export default function Send() {
               otherCurrency={currencies[Field.OUTPUT]}
               id="swap-currency-input"
             />
-            {/*  Address input panel */}
-            {recipient !== null && !showWrap ? (
-              <>
-                <AutoRow justify="space-between" style={{ padding: '0 1rem' }}>
-                  <ArrowWrapper clickable={false}>
-                    <ArrowDown size="16" color={theme.text2} />
-                  </ArrowWrapper>
-                  <LinkStyledButton id="remove-recipient-button" onClick={() => onChangeRecipient(null)}>
-                    - Remove send
-                  </LinkStyledButton>
-                </AutoRow>
-                <AddressInputPanel id="recipient" value={recipient} onChange={onChangeRecipient} />
-              </>
-            ) : null}
+            {/* fix problem with recipient */}
+            <AddressInputPanel id="recipient" value={'' /* recipient */} onChange={onChangeRecipient} />
 
             {showWrap ? null : (
               <Card padding={'.25rem .75rem 0 .75rem'} borderRadius={'20px'}>

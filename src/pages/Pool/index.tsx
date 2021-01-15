@@ -28,13 +28,6 @@ const PageWrapper = styled(AutoColumn)`
   width: 100%;
 `;
 
-const VoteCard = styled(DataCard)`
-  overflow: hidden;
-  font-size: 1.1em;
-  border: 1px solid ${({ theme }) => theme.text4};
-  color: ${({ theme }) => theme.text1};
-`;
-
 const TitleRow = styled(RowBetween)`
   ${({ theme }) => theme.mediaWidth.upToSmall`
     flex-wrap: wrap;
@@ -131,7 +124,7 @@ export default function Pool() {
       <PageWrapper>
         <SwapPoolTabs active={'pool'} />
 
-        <VoteCard>
+        <DataCard>
           <CardSection>
             <AutoColumn gap="md">
               <RowBetween>
@@ -144,7 +137,7 @@ export default function Pool() {
               </RowBetween>
             </AutoColumn>
           </CardSection>
-        </VoteCard>
+        </DataCard>
 
         <AutoColumn gap="lg" justify="center">
           <AutoColumn gap="lg" style={{ width: '100%' }}>

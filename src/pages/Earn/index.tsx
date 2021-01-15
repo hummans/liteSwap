@@ -65,9 +65,7 @@ export default function Earn() {
                   <TYPE.largeHeader>Luckyswap liquidity mining</TYPE.largeHeader>
                 </RowBetween>
                 <RowBetween>
-                  <TYPE.body>
-                    {`Deposit your Liquidity Provider tokens to receive LUCK, the Luckyswap protocol governance token.`}
-                  </TYPE.body>
+                  <TYPE.body>{`Deposit your Liquidity Provider tokens to receive LUCK)`}</TYPE.body>
                 </RowBetween>{' '}
                 <ExternalLink style={{ textDecoration: 'underline' }} href="#" target="_blank">
                   <TYPE.link>About LUCK</TYPE.link>
