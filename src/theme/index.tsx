@@ -63,7 +63,7 @@ export function colors(darkMode: boolean): Colors {
     primary3: '#50C386',
     primary4: '#16b35f8f',
     primary5: '#16b35f44',
-    primary6: '#16b35f20',
+    primary6: '#16b35f14',
 
     // color text
     primaryText1: '#08BD5C',
