@@ -2734,22 +2734,10 @@
     "semver" "^7.3.2"
     "tsutils" "^3.17.1"
 
-"@uniswap/governance@^1.0.2":
-  "integrity" "sha512-L7BzdI/asAINB2F6EvJuQcg5YhykNeEfZxJrn2RPIVvx+9A9u+opDuqnBK4SYnanrsr3UEX1NwWXwDHmyw2TjQ=="
-  "resolved" "https://registry.yarnpkg.com/@uniswap/governance/-/governance-1.0.2.tgz"
-  "version" "1.0.2"
-
 "@uniswap/lib@1.1.1":
   "integrity" "sha512-2yK7sLpKIT91TiS5sewHtOa7YuM8IuBXVl4GZv2jZFys4D2sY7K5vZh6MqD25TPA95Od+0YzCVq6cTF2IKrOmg=="
   "resolved" "https://registry.yarnpkg.com/@uniswap/lib/-/lib-1.1.1.tgz"
   "version" "1.1.1"
-
-"@uniswap/liquidity-staker@^1.0.2":
-  "integrity" "sha512-Rdj+QqapWO3sY1SJdLUQ8dhf26yXg9DC3XU3cpNoh5jrJ0UhAnKqciZss1F6oxBLbNWXzekuigLgSVbVb1BFcw=="
-  "resolved" "https://registry.yarnpkg.com/@uniswap/liquidity-staker/-/liquidity-staker-1.0.2.tgz"
-  "version" "1.0.2"
-  dependencies:
-    "openzeppelin-solidity-2.3.0" "npm:openzeppelin-solidity@2.3.0"
 
 "@uniswap/merkle-distributor@1.0.1":
   "integrity" "sha512-5gDiTI5hrXIh5UWTrxKYjw30QQDnpl8ckDSpefldNenDlYO1RKkdUYMYpvrqGi2r7YzLYTlO6+TDlNs6O7hDRw=="
@@ -11239,11 +11227,6 @@
   dependencies:
     "is-docker" "^2.0.0"
     "is-wsl" "^2.1.1"
-
-"openzeppelin-solidity-2.3.0@npm:openzeppelin-solidity@2.3.0":
-  "integrity" "sha512-QYeiPLvB1oSbDt6lDQvvpx7k8ODczvE474hb2kLXZBPKMsxKT1WxTCHBYrCU7kS7hfAku4DcJ0jqOyL+jvjwQw=="
-  "resolved" "https://registry.yarnpkg.com/openzeppelin-solidity/-/openzeppelin-solidity-2.3.0.tgz"
-  "version" "2.3.0"
 
 "opn@^5.5.0":
   "integrity" "sha512-PqHpggC9bLV0VeWcdKhkpxY+3JTzetLSqTCWL/z/tFIbI6G8JCjondXklT1JinczLz2Xib62sSp0T/gKT4KksA=="
