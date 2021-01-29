@@ -4,13 +4,13 @@ import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
+import Blocklist from './components/Blocklist';
 import { NetworkContextName } from './constants';
 import './i18n';
 import App from './pages/App';
 import store from './state';
 import ApplicationUpdater from './state/application/updater';
 import ListsUpdater from './state/lists/updater';
-import MulticallUpdater from './state/multicall/updater';
 import TransactionUpdater from './state/transactions/updater';
 import UserUpdater from './state/user/updater';
 import ThemeProvider, { FixedGlobalStyle, ThemedGlobalStyle } from './theme';
@@ -29,7 +29,6 @@ function Updaters() {
       <UserUpdater />
       <ApplicationUpdater />
       <TransactionUpdater />
-      <MulticallUpdater />
     </>
   );
 }
@@ -39,15 +38,17 @@ ReactDOM.render(
     <FixedGlobalStyle />
     <Web3ReactProvider getLibrary={getLibrary}>
       <Web3ProviderNetwork getLibrary={getLibrary}>
-        <Provider store={store}>
-          <Updaters />
-          <ThemeProvider>
-            <ThemedGlobalStyle />
-            <HashRouter>
-              <App />
-            </HashRouter>
-          </ThemeProvider>
-        </Provider>
+        <Blocklist>
+          <Provider store={store}>
+            <Updaters />
+            <ThemeProvider>
+              <ThemedGlobalStyle />
+              <HashRouter>
+                <App />
+              </HashRouter>
+            </ThemeProvider>
+          </Provider>
+        </Blocklist>
       </Web3ProviderNetwork>
     </Web3ReactProvider>
   </StrictMode>,
