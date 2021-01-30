@@ -1,8 +1,11 @@
 import { Currency, CurrencyAmount, ETHER, JSBI, Token, TokenAmount } from '@uniswap/sdk';
 import { useMemo } from 'react';
+import ERC20_INTERFACE from '../../constants/abis/erc20';
 import { useAllTokens } from '../../hooks/Tokens';
 import { useActiveWeb3React } from '../../hooks';
+import { useMulticallContract } from '../../hooks/useContract';
 import { isAddress } from '../../utils';
+import { useSingleContractMultipleData, useMultipleContractSingleData } from '../multicall/hooks';
 
 /**
  * Returns a map of the given addresses to their eventually consistent ETH balances.
@@ -10,6 +13,8 @@ import { isAddress } from '../../utils';
 export function useETHBalances(
   uncheckedAddresses?: (string | undefined)[]
 ): { [address: string]: CurrencyAmount | undefined } {
+  const multicallContract = useMulticallContract();
+
   const addresses: string[] = useMemo(
     () =>
       uncheckedAddresses
@@ -19,6 +24,12 @@ export function useETHBalances(
             .sort()
         : [],
     [uncheckedAddresses]
+  );
+
+  const results = useSingleContractMultipleData(
+    multicallContract,
+    'getEthBalance',
+    addresses.map(address => [address])
   );
 
   return useMemo(
@@ -43,6 +54,10 @@ export function useTokenBalancesWithLoadingIndicator(
     () => tokens?.filter((t?: Token): t is Token => isAddress(t?.address) !== false) ?? [],
     [tokens]
   );
+
+  const validatedTokenAddresses = useMemo(() => validatedTokens.map(vt => vt.address), [validatedTokens]);
+
+  const balances = useMultipleContractSingleData(validatedTokenAddresses, ERC20_INTERFACE, 'balanceOf', [address]);
 
   const anyLoading: boolean = useMemo(() => balances.some(callState => callState.loading), [balances]);
 

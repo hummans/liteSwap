@@ -54,7 +54,6 @@ function useSwapCallArguments(
     if (!trade || !recipient || !library || !account || !chainId || !deadline) return [];
 
     const contract: Contract | null = getRouterContract(chainId, library, account);
-
     if (!contract) {
       return [];
     }

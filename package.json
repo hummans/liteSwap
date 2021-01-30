@@ -1,6 +1,6 @@
 {
-  "name": "iteswap",
-  "description": "Liteswap - lite, fast, simple exchange",
+  "name": "liteswap",
+  "description": "Liteswap",
   "private": true,
   "devDependencies": {
     "@ethersproject/experimental": "^5.0.1",
