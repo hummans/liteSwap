@@ -17,7 +17,6 @@ import { Moon, Sun } from 'react-feather';
 import Menu from '../Menu';
 import Row, { RowFixed } from '../Row';
 import Web3Status from '../Web3Status';
-import ClaimModal from '../claim/ClaimModal';
 
 const HeaderFrame = styled.div`
   display: grid;
@@ -232,7 +231,6 @@ export default function Header() {
 
   return (
     <HeaderFrame>
-      <ClaimModal />
       <HeaderRow>
         <Title href=".">
           <UniIcon>

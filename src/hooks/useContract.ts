@@ -11,7 +11,6 @@ import ENS_PUBLIC_RESOLVER_ABI from '../constants/abis/ens-public-resolver.json'
 import ENS_ABI from '../constants/abis/ens-registrar.json';
 import { ERC20_BYTES32_ABI } from '../constants/abis/erc20';
 import ERC20_ABI from '../constants/abis/erc20.json';
-import UNISOCKS_ABI from '../constants/abis/unisocks.json';
 import WETH_ABI from '../constants/abis/weth.json';
 import { MULTICALL_ABI, MULTICALL_NETWORKS } from '../constants/multicall';
 import { getContract } from '../utils';
@@ -85,13 +84,4 @@ export function useMulticallContract(): Contract | null {
 
 export function useStakingContract(stakingAddress?: string, withSignerIfPossible?: boolean): Contract | null {
   return useContract(stakingAddress, STAKING_REWARDS_ABI, withSignerIfPossible);
-}
-
-export function useSocksController(): Contract | null {
-  const { chainId } = useActiveWeb3React();
-  return useContract(
-    chainId === ChainId.MAINNET ? '0x65770b5283117639760beA3F867b69b3697a91dd' : undefined,
-    UNISOCKS_ABI,
-    false
-  );
 }
