@@ -45,7 +45,6 @@ import { ClickableText } from '../Pool/styleds';
 import Loader from '../../components/Loader';
 import { useIsTransactionUnsupported } from 'hooks/Trades';
 import UnsupportedCurrencyFooter from 'components/swap/UnsupportedCurrencyFooter';
-import { isTradeBetter } from 'utils/trades';
 
 export default function Swap() {
   const loadedUrlParams = useDefaultsFromURLSearch();
@@ -87,14 +86,7 @@ export default function Swap() {
 
   // swap state
   const { independentField, typedValue, recipient } = useSwapState();
-  const {
-    v1Trade,
-    v2Trade,
-    currencyBalances,
-    parsedAmount,
-    currencies,
-    inputError: swapInputError
-  } = useDerivedSwapInfo();
+  const { v2Trade, currencyBalances, parsedAmount, currencies, inputError: swapInputError } = useDerivedSwapInfo();
   const { wrapType, execute: onWrap, inputError: wrapInputError } = useWrapCallback(
     currencies[Field.INPUT],
     currencies[Field.OUTPUT],
@@ -103,15 +95,10 @@ export default function Swap() {
   const showWrap: boolean = wrapType !== WrapType.NOT_APPLICABLE;
   const { address: recipientAddress } = useENSAddress(recipient);
   const toggledVersion = useToggledVersion();
-  const tradesByVersion = {
-    [Version.v1]: v1Trade,
-    [Version.v2]: v2Trade
-  };
-  const trade = showWrap ? undefined : tradesByVersion[toggledVersion];
-  const defaultTrade = showWrap ? undefined : tradesByVersion[DEFAULT_VERSION];
 
-  const betterTradeLinkV2: Version | undefined =
-    toggledVersion === Version.v1 && isTradeBetter(v1Trade, v2Trade) ? Version.v2 : undefined;
+  const trade = showWrap ? undefined : v2Trade;
+  const defaultTrade = showWrap ? undefined : v2Trade;
+  const betterTradeLinkV2: Version | undefined = Version.v2;
 
   const parsedAmounts = showWrap
     ? {

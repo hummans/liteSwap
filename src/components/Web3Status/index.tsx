@@ -122,12 +122,6 @@ function newTransactionsFirst(a: TransactionDetails, b: TransactionDetails) {
   return b.addedTime - a.addedTime;
 }
 
-const SOCK = (
-  <span role="img" aria-label="has socks emoji" style={{ marginTop: -4, marginBottom: -4 }}>
-    🧦
-  </span>
-);
-
 // eslint-disable-next-line react/prop-types
 function StatusIcon({ connector }: { connector: AbstractConnector }) {
   if (connector === injected) {
@@ -212,9 +206,7 @@ function Web3StatusInner() {
 export default function Web3Status() {
   const { active, account } = useWeb3React();
   const contextNetwork = useWeb3React(NetworkContextName);
-
   const { ENSName } = useENSName(account ?? undefined);
-
   const allTransactions = useAllTransactions();
 
   const sortedRecentTransactions = useMemo(() => {
