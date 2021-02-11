@@ -14,7 +14,6 @@ import { useETHBalances } from '../../state/wallet/hooks';
 
 import { YellowCard } from '../Card';
 import { Moon, Sun } from 'react-feather';
-import Menu from '../Menu';
 import Row, { RowFixed } from '../Row';
 import Web3Status from '../Web3Status';
 
@@ -28,7 +27,6 @@ const HeaderFrame = styled.div`
   width: 100%;
   top: 0;
   position: relative;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding: 1rem;
   z-index: 2;
   ${({ theme }) => theme.mediaWidth.upToMedium`
@@ -276,7 +274,6 @@ export default function Header() {
           <StyledMenuButton onClick={() => toggleDarkMode()}>
             {darkMode ? <Moon size={20} /> : <Sun size={20} />}
           </StyledMenuButton>
-          <Menu />
         </HeaderElementWrap>
       </HeaderControls>
     </HeaderFrame>
