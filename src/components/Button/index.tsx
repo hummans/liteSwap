@@ -29,6 +29,9 @@ const Base = styled(RebassButton)<{
   cursor: pointer;
   position: relative;
   z-index: 1;
+  transition: 0.2s;
+
+
   &:disabled {
     cursor: auto;
   }
@@ -65,50 +68,6 @@ export const ButtonPrimary = styled(Base)`
   }
 `
 
-export const ButtonLight = styled(Base)`
-  background-color: ${({ theme }) => theme.primary5};
-  color: ${({ theme }) => theme.primaryText1};
-  font-size: 16px;
-  font-weight: 500;
-  &:focus {
-    box-shadow: 0 0 0 1pt ${({ theme, disabled }) => !disabled && darken(0.03, theme.primary5)};
-    background-color: ${({ theme, disabled }) => !disabled && darken(0.03, theme.primary5)};
-  }
-  &:hover {
-    background-color: ${({ theme, disabled }) => !disabled && darken(0.03, theme.primary5)};
-  }
-  &:active {
-    box-shadow: 0 0 0 1pt ${({ theme, disabled }) => !disabled && darken(0.05, theme.primary5)};
-    background-color: ${({ theme, disabled }) => !disabled && darken(0.05, theme.primary5)};
-  }
-  :disabled {
-    opacity: 0.4;
-    :hover {
-      cursor: auto;
-      background-color: ${({ theme }) => theme.primary5};
-      box-shadow: none;
-      border: 1px solid transparent;
-      outline: none;
-    }
-  }
-`
-
-export const ButtonGray = styled(Base)`
-  background-color: ${({ theme }) => theme.bg3};
-  color: ${({ theme }) => theme.text2};
-  font-size: 16px;
-  font-weight: 500;
-  &:focus {
-    background-color: ${({ theme, disabled }) => !disabled && darken(0.05, theme.bg4)};
-  }
-  &:hover {
-    background-color: ${({ theme, disabled }) => !disabled && darken(0.05, theme.bg4)};
-  }
-  &:active {
-    background-color: ${({ theme, disabled }) => !disabled && darken(0.1, theme.bg4)};
-  }
-`
-
 export const ButtonSecondary = styled(Base)`
   border: 1px solid ${({ theme }) => theme.primary4};
   color: ${({ theme }) => theme.primary1};
@@ -137,48 +96,6 @@ export const ButtonSecondary = styled(Base)`
   }
 `
 
-export const ButtonPink = styled(Base)`
-  background-color: ${({ theme }) => theme.primary1};
-  color: white;
-
-  &:focus {
-    box-shadow: 0 0 0 1pt ${({ theme }) => darken(0.05, theme.primary1)};
-    background-color: ${({ theme }) => darken(0.05, theme.primary1)};
-  }
-  &:hover {
-    background-color: ${({ theme }) => darken(0.05, theme.primary1)};
-  }
-  &:active {
-    box-shadow: 0 0 0 1pt ${({ theme }) => darken(0.1, theme.primary1)};
-    background-color: ${({ theme }) => darken(0.1, theme.primary1)};
-  }
-  &:disabled {
-    background-color: ${({ theme }) => theme.primary1};
-    opacity: 50%;
-    cursor: auto;
-  }
-`
-
-export const ButtonUNIGradient = styled(ButtonPrimary)`
-  color: white;
-  padding: 4px 8px;
-  height: 36px;
-  font-weight: 500;
-  background-color: ${({ theme }) => theme.bg3};
-  background: radial-gradient(174.47% 188.91% at 1.84% 0%, #ff007a 0%, #2172e5 100%), #edeef2;
-  width: fit-content;
-  position: relative;
-  cursor: pointer;
-  border: none;
-  white-space: no-wrap;
-  :hover {
-    opacity: 0.8;
-  }
-  :active {
-    opacity: 0.9;
-  }
-`
-
 export const ButtonOutlined = styled(Base)`
   border: 1px solid ${({ theme }) => theme.bg2};
   background-color: transparent;
@@ -201,14 +118,11 @@ export const ButtonOutlined = styled(Base)`
 
 export const ButtonEmpty = styled(Base)`
   background-color: transparent;
-  color: ${({ theme }) => theme.primary1};
+  color: ${({ theme }) => theme.text1};
   display: flex;
   justify-content: center;
   align-items: center;
 
-  &:focus {
-    text-decoration: underline;
-  }
   &:hover {
     text-decoration: none;
   }
@@ -305,17 +219,6 @@ export function ButtonDropdown({ disabled = false, children, ...rest }: { disabl
         <ChevronDown size={24} />
       </RowBetween>
     </ButtonPrimary>
-  )
-}
-
-export function ButtonDropdownGrey({ disabled = false, children, ...rest }: { disabled?: boolean } & ButtonProps) {
-  return (
-    <ButtonGray {...rest} disabled={disabled} style={{ borderRadius: '20px' }}>
-      <RowBetween>
-        <div style={{ display: 'flex', alignItems: 'center' }}>{children}</div>
-        <ChevronDown size={24} />
-      </RowBetween>
-    </ButtonGray>
   )
 }
 

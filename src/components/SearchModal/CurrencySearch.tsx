@@ -21,7 +21,7 @@ import { useOnClickOutside } from 'hooks/useOnClickOutside';
 import useTheme from 'hooks/useTheme';
 import ImportRow from './ImportRow';
 import { Edit } from 'react-feather';
-import { ButtonLight } from 'components/Button';
+import { ButtonPrimary } from 'components/Button';
 
 const ContentWrapper = styled(Column)`
   width: 100%;
@@ -240,7 +240,7 @@ export function CurrencySearch({
             filteredSortedTokens?.length === 0 && (
               // expand button in line with no results
               <Row align="center" width="100%" justify="center">
-                <ButtonLight
+                <ButtonPrimary
                   width="fit-content"
                   borderRadius="12px"
                   padding="8px 12px"
@@ -249,7 +249,7 @@ export function CurrencySearch({
                   {!showExpanded
                     ? `Show ${inactiveTokens.length} more inactive ${inactiveTokens.length === 1 ? 'token' : 'tokens'}`
                     : 'Hide expanded search'}
-                </ButtonLight>
+                </ButtonPrimary>
               </Row>
             )}
         </Column>
@@ -262,7 +262,7 @@ export function CurrencySearch({
         (filteredSortedTokens?.length !== 0 || showExpanded) && (
           // button fixed to bottom
           <Row align="center" width="100%" justify="center" style={{ position: 'absolute', bottom: '80px', left: 0 }}>
-            <ButtonLight
+            <ButtonPrimary
               width="fit-content"
               borderRadius="12px"
               padding="8px 12px"
@@ -271,7 +271,7 @@ export function CurrencySearch({
               {!showExpanded
                 ? `Show ${inactiveTokens.length} more inactive ${inactiveTokens.length === 1 ? 'token' : 'tokens'}`
                 : 'Hide expanded search'}
-            </ButtonLight>
+            </ButtonPrimary>
           </Row>
         )}
       <Footer>

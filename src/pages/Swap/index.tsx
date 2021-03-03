@@ -4,7 +4,7 @@ import { ArrowDown } from 'react-feather';
 import { Text } from 'rebass';
 import { ThemeContext } from 'styled-components';
 import AddressInputPanel from '../../components/AddressInputPanel';
-import { ButtonError, ButtonLight, ButtonPrimary, ButtonConfirmed } from '../../components/Button';
+import { ButtonError, ButtonPrimary, ButtonConfirmed } from '../../components/Button';
 import Card, { GreyCard } from '../../components/Card';
 import Column, { AutoColumn } from '../../components/Column';
 import ConfirmSwapModal from '../../components/swap/ConfirmSwapModal';
@@ -372,7 +372,7 @@ export default function Swap() {
                 <TYPE.main mb="4px">Unsupported Asset</TYPE.main>
               </ButtonPrimary>
             ) : !account ? (
-              <ButtonLight onClick={toggleWalletModal}>Connect Wallet</ButtonLight>
+              <ButtonPrimary onClick={toggleWalletModal}>Connect Wallet</ButtonPrimary>
             ) : showWrap ? (
               <ButtonPrimary disabled={Boolean(wrapInputError)} onClick={onWrap}>
                 {wrapInputError ??

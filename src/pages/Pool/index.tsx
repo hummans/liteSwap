@@ -117,7 +117,6 @@ export default function Pool() {
                   id="join-pool-button"
                   as={Link}
                   padding="6px 8px"
-                  borderRadius="12px"
                   to="/add/ETH"
                 >
                   <Text fontWeight={500} fontSize={16}>

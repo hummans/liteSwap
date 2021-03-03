@@ -13,7 +13,6 @@ import { TYPE } from '../../theme';
 import { currencyId } from '../../utils/currencyId';
 import { unwrappedToken } from '../../utils/wrappedCurrency';
 import { ButtonPrimary, ButtonEmpty } from '../Button';
-import { transparentize } from 'polished';
 
 import { useColor } from '../../hooks/useColor';
 
@@ -31,16 +30,16 @@ export const FixedHeightRow = styled(RowBetween)`
 
 export const HoverCard = styled(Card)`
   border: 1px solid transparent;
+  
   :hover {
     border: 1px solid ${({ theme }) => darken(0.06, theme.bg2)};
   }
 `;
 const StyledPositionCard = styled(LightCard)<{ bgColor: any }>`
-  border: none;
-  background: ${({ theme, bgColor }) =>
-    `radial-gradient(91.85% 100% at 1.84% 0%, ${transparentize(0.8, bgColor)} 0%, ${theme.bg3} 100%) `};
   position: relative;
   overflow: hidden;
+  border: 1px solid ${({ theme }) => theme.primary1};
+  background: ${({ theme }) => theme.bg1};
 `;
 
 interface PositionCardProps {
@@ -204,19 +203,18 @@ export default function FullPositionCard({ pair, border, stakedBalance }: Positi
           <RowFixed gap="8px">
             <ButtonEmpty
               padding="6px 8px"
-              borderRadius="12px"
               width="fit-content"
               onClick={() => setShowMore(!showMore)}
             >
               {showMore ? (
                 <>
                   Manage
-                  <ChevronUp size="20" style={{ marginLeft: '10px' }} />
+                  <ChevronUp size="37" style={{ marginLeft: '12px' }} />
                 </>
               ) : (
                 <>
                   Manage
-                  <ChevronDown size="20" style={{ marginLeft: '10px' }} />
+                  <ChevronDown size="37" style={{ marginLeft: '12px' }} />
                 </>
               )}
             </ButtonEmpty>
@@ -294,7 +292,6 @@ export default function FullPositionCard({ pair, border, stakedBalance }: Positi
               <RowBetween marginTop="10px">
                 <ButtonPrimary
                   padding="8px"
-                  borderRadius="8px"
                   as={Link}
                   to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}
                   width="48%"
@@ -303,7 +300,6 @@ export default function FullPositionCard({ pair, border, stakedBalance }: Positi
                 </ButtonPrimary>
                 <ButtonPrimary
                   padding="8px"
-                  borderRadius="8px"
                   as={Link}
                   width="48%"
                   to={`/remove/${currencyId(currency0)}/${currencyId(currency1)}`}
@@ -315,7 +311,6 @@ export default function FullPositionCard({ pair, border, stakedBalance }: Positi
             {stakedBalance && JSBI.greaterThan(stakedBalance.raw, BIG_INT_ZERO) && (
               <ButtonPrimary
                 padding="8px"
-                borderRadius="8px"
                 as={Link}
                 to={`/uni/${currencyId(currency0)}/${currencyId(currency1)}`}
                 width="100%"
