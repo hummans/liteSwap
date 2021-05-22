@@ -1,20 +1,18 @@
 # Lightswap
 
-[![Lint](https://github.com/Uniswap/uniswap-interface/workflows/Lint/badge.svg)](https://github.com/Uniswap/uniswap-interface/actions?query=workflow%3ALint)
 [![Styled With Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://prettier.io/)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/noteternal/liteswap?color=green&style=plastic)
+![GitHub repo size](https://img.shields.io/github/repo-size/noteternal/liteswap?color=orange&style=plastic)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/noteternal/liteswap?color=blue&style=plastic)
 
-## Development
+## [Development on Ropsten]()
 
 ### Install Dependencies
 
-`yarn`
-or
-`npm l`
+`npm install`
 
 ### Run
 
-`yarn start`
-or
 `npm start`
 
 ### Configuring the environment (optional)
