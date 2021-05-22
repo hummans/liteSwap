@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8493958abf43ae4568697bf0d3ed6f3d",
+    "revision": "f100c434846ac29cbda526b41409a445",
     "url": "/liteSwap/index.html"
   },
   {
@@ -60,8 +60,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/liteSwap/static/js/9.517f4e32.chunk.js"
   },
   {
-    "revision": "a93b62913423ae3cf665",
-    "url": "/liteSwap/static/js/main.5c7776b6.chunk.js"
+    "revision": "dec7311cbfb375bff5bf",
+    "url": "/liteSwap/static/js/main.4edcb8d3.chunk.js"
   },
   {
     "revision": "d5ab99410febcc1bb60b",

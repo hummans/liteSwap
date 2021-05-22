@@ -2,7 +2,7 @@
   "files": {
     "static/js/0.e4f80839.chunk.js": "/liteSwap/static/js/0.e4f80839.chunk.js",
     "static/js/1.c65f5c8b.chunk.js": "/liteSwap/static/js/1.c65f5c8b.chunk.js",
-    "main.js": "/liteSwap/static/js/main.5c7776b6.chunk.js",
+    "main.js": "/liteSwap/static/js/main.4edcb8d3.chunk.js",
     "runtime-main.js": "/liteSwap/static/js/runtime-main.0ac4b842.js",
     "static/css/4.626e3549.chunk.css": "/liteSwap/static/css/4.626e3549.chunk.css",
     "static/js/4.2f51b37a.chunk.js": "/liteSwap/static/js/4.2f51b37a.chunk.js",
@@ -12,7 +12,7 @@
     "static/js/8.3ecddf3b.chunk.js": "/liteSwap/static/js/8.3ecddf3b.chunk.js",
     "static/js/9.517f4e32.chunk.js": "/liteSwap/static/js/9.517f4e32.chunk.js",
     "index.html": "/liteSwap/index.html",
-    "precache-manifest.086d8dde1612118e0aa9f48bf0c15616.js": "/liteSwap/precache-manifest.086d8dde1612118e0aa9f48bf0c15616.js",
+    "precache-manifest.57da46328af0956510ab6822db308db6.js": "/liteSwap/precache-manifest.57da46328af0956510ab6822db308db6.js",
     "service-worker.js": "/liteSwap/service-worker.js",
     "static/js/0.e4f80839.chunk.js.LICENSE.txt": "/liteSwap/static/js/0.e4f80839.chunk.js.LICENSE.txt",
     "static/js/4.2f51b37a.chunk.js.LICENSE.txt": "/liteSwap/static/js/4.2f51b37a.chunk.js.LICENSE.txt",
@@ -51,6 +51,6 @@
     "static/js/runtime-main.0ac4b842.js",
     "static/css/4.626e3549.chunk.css",
     "static/js/4.2f51b37a.chunk.js",
-    "static/js/main.5c7776b6.chunk.js"
+    "static/js/main.4edcb8d3.chunk.js"
   ]
 }
