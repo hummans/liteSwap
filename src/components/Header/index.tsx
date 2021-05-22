@@ -18,26 +18,26 @@ import Row, { RowFixed } from '../Row';
 import Web3Status from '../Web3Status';
 
 const HeaderFrame = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 120px;
+  width: 50vw;
+  position: relative;
+  margin: 2rem auto;
+  padding: 1rem 1.6rem;
+  z-index: 2;
+  display: flex;
   align-items: center;
   justify-content: space-between;
-  align-items: center;
   flex-direction: row;
-  width: 100%;
-  top: 0;
-  position: relative;
-  padding: 1rem;
-  z-index: 2;
+  border-radius: 2em;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.06), 0px 11px 23px rgba(0, 0, 0, 0.1);
+  background: ${({ theme }) => theme.bg1};
+
   ${({ theme }) => theme.mediaWidth.upToMedium`
-    grid-template-columns: 1fr;
-    padding: 0 1rem;
-    width: calc(100%);
-    position: relative;
+    width: 80vw;
   `};
 
   ${({ theme }) => theme.mediaWidth.upToExtraSmall`
-        padding: 0.5rem 1rem;
+    width: 100vw;
+    padding: 0.5rem 1rem;
   `}
 `;
 
@@ -46,23 +46,6 @@ const HeaderControls = styled.div`
   flex-direction: row;
   align-items: center;
   justify-self: flex-end;
-
-  ${({ theme }) => theme.mediaWidth.upToMedium`
-    flex-direction: row;
-    justify-content: space-between;
-    justify-self: center;
-    width: 100%;
-    max-width: 960px;
-    padding: 1rem;
-    position: fixed;
-    bottom: 0px;
-    left: 0px;
-    width: 100%;
-    z-index: 99;
-    height: 72px;
-    border-radius: 12px 12px 0 0;
-    background-color: ${({ theme }) => theme.bg1};
-  `};
 `;
 
 const HeaderElement = styled.div`
@@ -149,7 +132,7 @@ const Title = styled.a`
   }
 `;
 
-const UniIcon = styled.div`
+const Icon = styled.div`
   transition: transform 0.3s ease;
   :hover {
     transform: rotate(-5deg);
@@ -231,9 +214,9 @@ export default function Header() {
     <HeaderFrame>
       <HeaderRow>
         <Title href=".">
-          <UniIcon>
-            <img width={'24px'} src={darkMode ? LogoDark : Logo} alt="logo" />
-          </UniIcon>
+          <Icon>
+            <img width={'20px'} src={darkMode ? LogoDark : Logo} alt="logo" />
+          </Icon>
         </Title>
         <HeaderLinks>
           <StyledNavLink id={`swap-nav-link`} to={'/swap'}>
@@ -254,6 +237,7 @@ export default function Header() {
           </StyledNavLink>
         </HeaderLinks>
       </HeaderRow>
+
       <HeaderControls>
         <HeaderElement>
           <HideSmall>
