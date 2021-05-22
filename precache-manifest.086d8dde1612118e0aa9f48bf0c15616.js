@@ -1,71 +1,71 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "bb6986a2ebb2badbf02a53248df9f251",
+    "revision": "8493958abf43ae4568697bf0d3ed6f3d",
     "url": "/liteSwap/index.html"
   },
   {
-    "revision": "f837d5cf2a2e20725af1",
+    "revision": "c8f7436600f2de039a85",
     "url": "/liteSwap/static/css/4.626e3549.chunk.css"
   },
   {
-    "revision": "593033dfc2c9465a958b",
-    "url": "/liteSwap/static/js/0.912febbf.chunk.js"
+    "revision": "6fd8bf5337508e5c3623",
+    "url": "/liteSwap/static/js/0.e4f80839.chunk.js"
   },
   {
     "revision": "2dcca5009cd13e570af3fc122d60664e",
-    "url": "/liteSwap/static/js/0.912febbf.chunk.js.LICENSE.txt"
+    "url": "/liteSwap/static/js/0.e4f80839.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "7c12e2a724f8674ebffd",
-    "url": "/liteSwap/static/js/1.7a9cd909.chunk.js"
+    "revision": "e3cd42f1dcafe9607de0",
+    "url": "/liteSwap/static/js/1.c65f5c8b.chunk.js"
   },
   {
-    "revision": "f837d5cf2a2e20725af1",
-    "url": "/liteSwap/static/js/4.f7bbe629.chunk.js"
+    "revision": "c8f7436600f2de039a85",
+    "url": "/liteSwap/static/js/4.2f51b37a.chunk.js"
   },
   {
     "revision": "989f21fb5adb794855e312b95dfc6604",
-    "url": "/liteSwap/static/js/4.f7bbe629.chunk.js.LICENSE.txt"
+    "url": "/liteSwap/static/js/4.2f51b37a.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "d4942aa6e9eb474d5a36",
-    "url": "/liteSwap/static/js/5.51c5760f.chunk.js"
+    "revision": "5ba9750505e583913b5a",
+    "url": "/liteSwap/static/js/5.52f2838d.chunk.js"
   },
   {
     "revision": "caaa9c24a9c77eaead93960f555b5a26",
-    "url": "/liteSwap/static/js/5.51c5760f.chunk.js.LICENSE.txt"
+    "url": "/liteSwap/static/js/5.52f2838d.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "e6acad01e8245d98d8fb",
-    "url": "/liteSwap/static/js/6.e8b71b8f.chunk.js"
+    "revision": "0490290410a33bfb8028",
+    "url": "/liteSwap/static/js/6.6c2725b7.chunk.js"
   },
   {
     "revision": "783f14fa45b10e088e68f98251448010",
-    "url": "/liteSwap/static/js/6.e8b71b8f.chunk.js.LICENSE.txt"
+    "url": "/liteSwap/static/js/6.6c2725b7.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f0717fb8e8cfa9d0d736",
-    "url": "/liteSwap/static/js/7.b81904bb.chunk.js"
+    "revision": "3677036648d32c19e906",
+    "url": "/liteSwap/static/js/7.d250c749.chunk.js"
   },
   {
     "revision": "c178649ae0de162657ef6caa733cc024",
-    "url": "/liteSwap/static/js/7.b81904bb.chunk.js.LICENSE.txt"
+    "url": "/liteSwap/static/js/7.d250c749.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "fa7ee259a4f5e883f78a",
-    "url": "/liteSwap/static/js/8.a0287c21.chunk.js"
+    "revision": "c9ae524ddb3f712895f8",
+    "url": "/liteSwap/static/js/8.3ecddf3b.chunk.js"
   },
   {
-    "revision": "ef74c82f98cc2b79f283",
-    "url": "/liteSwap/static/js/9.618386af.chunk.js"
+    "revision": "1a9e1d10e0ffbff80440",
+    "url": "/liteSwap/static/js/9.517f4e32.chunk.js"
   },
   {
-    "revision": "ac05d5cdbaf35b22e595",
-    "url": "/liteSwap/static/js/main.9269aff9.chunk.js"
+    "revision": "a93b62913423ae3cf665",
+    "url": "/liteSwap/static/js/main.5c7776b6.chunk.js"
   },
   {
-    "revision": "725ee8cc77ca59063be9",
-    "url": "/liteSwap/static/js/runtime-main.7d6853e6.js"
+    "revision": "d5ab99410febcc1bb60b",
+    "url": "/liteSwap/static/js/runtime-main.0ac4b842.js"
   },
   {
     "revision": "6db365aeaea05fb00f0541bb88b39dec",
