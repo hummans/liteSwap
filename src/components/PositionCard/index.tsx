@@ -30,7 +30,7 @@ export const FixedHeightRow = styled(RowBetween)`
 
 export const HoverCard = styled(Card)`
   border: 1px solid transparent;
-  
+
   :hover {
     border: 1px solid ${({ theme }) => darken(0.06, theme.bg2)};
   }
@@ -201,11 +201,7 @@ export default function FullPositionCard({ pair, border, stakedBalance }: Positi
             </Text>
           </AutoRow>
           <RowFixed gap="8px">
-            <ButtonEmpty
-              padding="6px 8px"
-              width="fit-content"
-              onClick={() => setShowMore(!showMore)}
-            >
+            <ButtonEmpty padding="6px 8px" width="fit-content" onClick={() => setShowMore(!showMore)}>
               {showMore ? (
                 <>
                   Manage

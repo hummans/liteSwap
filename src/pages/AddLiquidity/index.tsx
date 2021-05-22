@@ -1,6 +1,6 @@
 import { BigNumber } from '@ethersproject/bignumber';
 import { TransactionResponse } from '@ethersproject/providers';
-import { Currency, currencyEquals, ETHER, TokenAmount, WETH } from '@uniswap/sdk';
+import { Currency, ETHER, TokenAmount } from '@uniswap/sdk';
 import React, { useCallback, useContext, useState } from 'react';
 import { Plus } from 'react-feather';
 import { RouteComponentProps } from 'react-router-dom';
@@ -13,7 +13,6 @@ import TransactionConfirmationModal, { ConfirmationModalContent } from '../../co
 import CurrencyInputPanel from '../../components/CurrencyInputPanel';
 import DoubleCurrencyLogo from '../../components/DoubleLogo';
 import { AddRemoveTabs } from '../../components/NavigationTabs';
-import { MinimalPositionCard } from '../../components/PositionCard';
 import Row, { RowBetween, RowFlat } from '../../components/Row';
 
 import { ROUTER_ADDRESS } from '../../constants';
@@ -37,8 +36,6 @@ import { Dots, Wrapper } from '../Pool/styleds';
 import { ConfirmAddModalBottom } from './ConfirmAddModalBottom';
 import { currencyId } from '../../utils/currencyId';
 import { PoolPriceBar } from './PoolPriceBar';
-import { useIsTransactionUnsupported } from 'hooks/Trades';
-import UnsupportedCurrencyFooter from 'components/swap/UnsupportedCurrencyFooter';
 
 export default function AddLiquidity({
   match: {
@@ -52,12 +49,6 @@ export default function AddLiquidity({
   const currencyA = useCurrency(currencyIdA);
   const currencyB = useCurrency(currencyIdB);
 
-  const oneCurrencyIsWETH = Boolean(
-    chainId &&
-      ((currencyA && currencyEquals(currencyA, WETH[chainId])) ||
-        (currencyB && currencyEquals(currencyB, WETH[chainId])))
-  );
-
   const toggleWalletModal = useWalletModalToggle(); // toggle wallet when disconnected
 
   const expertMode = useIsExpertMode();
@@ -67,7 +58,6 @@ export default function AddLiquidity({
   const {
     dependentField,
     currencies,
-    pair,
     pairState,
     currencyBalances,
     parsedAmounts,
@@ -300,8 +290,6 @@ export default function AddLiquidity({
 
   const isCreate = history.location.pathname.includes('/create');
 
-  const addIsUnsupported = useIsTransactionUnsupported(currencies?.CURRENCY_A, currencies?.CURRENCY_B);
-
   return (
     <>
       <AppBody>
@@ -400,11 +388,7 @@ export default function AddLiquidity({
               </>
             )}
 
-            {addIsUnsupported ? (
-              <ButtonPrimary disabled={true}>
-                <TYPE.main mb="4px">Unsupported Asset</TYPE.main>
-              </ButtonPrimary>
-            ) : !account ? (
+            {!account ? (
               <ButtonPrimary onClick={toggleWalletModal}>Connect Wallet</ButtonPrimary>
             ) : (
               <AutoColumn gap={'md'}>
@@ -458,18 +442,6 @@ export default function AddLiquidity({
           </AutoColumn>
         </Wrapper>
       </AppBody>
-      {!addIsUnsupported ? (
-        pair && !noLiquidity && pairState !== PairState.INVALID ? (
-          <AutoColumn style={{ minWidth: '20rem', width: '100%', maxWidth: '400px', marginTop: '1rem' }}>
-            <MinimalPositionCard showUnwrapped={oneCurrencyIsWETH} pair={pair} />
-          </AutoColumn>
-        ) : null
-      ) : (
-        <UnsupportedCurrencyFooter
-          show={addIsUnsupported}
-          currencies={[currencies.CURRENCY_A, currencies.CURRENCY_B]}
-        />
-      )}
     </>
   );
 }
