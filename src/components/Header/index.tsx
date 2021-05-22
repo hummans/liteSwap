@@ -12,7 +12,7 @@ import { useActiveWeb3React } from '../../hooks';
 import { useDarkModeManager } from '../../state/user/hooks';
 import { useETHBalances } from '../../state/wallet/hooks';
 
-import { YellowCard } from '../Card';
+import { LightCard } from '../Card';
 import { Moon, Sun } from 'react-feather';
 import Row, { RowFixed } from '../Row';
 import Web3Status from '../Web3Status';
@@ -28,8 +28,12 @@ const HeaderFrame = styled.div`
   justify-content: space-between;
   flex-direction: row;
   border-radius: 2em;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.06), 0px 11px 23px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.06), 0px 41px 23px rgba(0, 0, 0, 0.1);
   background: ${({ theme }) => theme.bg1};
+
+  ${({ theme }) => theme.mediaWidth.upToLarge`
+    width: 70vw;
+  `};
 
   ${({ theme }) => theme.mediaWidth.upToMedium`
     width: 80vw;
@@ -65,8 +69,11 @@ const HeaderElementWrap = styled.div`
 `;
 
 const HeaderRow = styled(RowFixed)`
+  display: flex;
+  align-items: center;
+
   ${({ theme }) => theme.mediaWidth.upToMedium`
-   width: 100%;
+    width: 100%;
   `};
 `;
 
@@ -99,9 +106,10 @@ const HideSmall = styled.span`
   `};
 `;
 
-const NetworkCard = styled(YellowCard)`
+const NetworkCard = styled(LightCard)`
   border-radius: 12px;
   padding: 8px 12px;
+
   ${({ theme }) => theme.mediaWidth.upToSmall`
     margin: 0;
     margin-right: 0.5rem;
@@ -155,10 +163,10 @@ const StyledNavLink = styled(NavLink).attrs({
   width: fit-content;
   margin: 0 12px;
   font-weight: 500;
+  transition: 0.3s;
 
   &.${activeClassName} {
     border-radius: 12px;
-    font-weight: 600;
     color: ${({ theme }) => theme.text1};
   }
 
@@ -200,7 +208,7 @@ export const StyledMenuButton = styled.button`
 const NETWORK_LABELS: { [chainId in ChainId]?: string } = {
   [ChainId.RINKEBY]: 'Rinkeby',
   [ChainId.ROPSTEN]: 'Ropsten',
-  [ChainId.GÖRLI]: 'Görli',
+  [ChainId.GÖRLI]: 'Goerli',
   [ChainId.KOVAN]: 'Kovan'
 };
 
@@ -215,12 +223,12 @@ export default function Header() {
       <HeaderRow>
         <Title href=".">
           <Icon>
-            <img width={'20px'} src={darkMode ? LogoDark : Logo} alt="logo" />
+            <img width={'18px'} src={darkMode ? LogoDark : Logo} alt="logo" />
           </Icon>
         </Title>
         <HeaderLinks>
           <StyledNavLink id={`swap-nav-link`} to={'/swap'}>
-            {t('swap')}
+            {t('SWAP')}
           </StyledNavLink>
           <StyledNavLink
             id={`pool-nav-link`}
@@ -233,7 +241,7 @@ export default function Header() {
               pathname.startsWith('/find')
             }
           >
-            {t('pool')}
+            {t('POOL')}
           </StyledNavLink>
         </HeaderLinks>
       </HeaderRow>
