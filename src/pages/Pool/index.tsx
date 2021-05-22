@@ -3,14 +3,14 @@ import styled, { ThemeContext } from 'styled-components';
 import { Pair } from '@uniswap/sdk';
 import { Link } from 'react-router-dom';
 import { SwapPoolTabs } from '../../components/NavigationTabs';
-
+import AppBody from '../AppBody';
 import FullPositionCard from '../../components/PositionCard';
 import { useTokenBalancesWithLoadingIndicator } from '../../state/wallet/hooks';
 import { TYPE, HideSmall } from '../../theme';
 import { Text } from 'rebass';
 import Card from '../../components/Card';
 import { RowBetween, RowFixed } from '../../components/Row';
-import { ButtonPrimary, ButtonSecondary } from '../../components/Button';
+import { ButtonPrimary } from '../../components/Button';
 import { AutoColumn } from '../../components/Column';
 
 import { useActiveWeb3React } from '../../hooks';
@@ -21,6 +21,7 @@ import { Dots } from '../../components/swap/styleds';
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
   width: 100%;
+  padding: 1rem;
 `;
 
 const TitleRow = styled(RowBetween)`
@@ -42,13 +43,6 @@ const ButtonRow = styled(RowFixed)`
 `;
 
 const ResponsiveButtonPrimary = styled(ButtonPrimary)`
-  width: fit-content;
-  ${({ theme }) => theme.mediaWidth.upToSmall`
-    width: 48%;
-  `};
-`;
-
-const ResponsiveButtonSecondary = styled(ButtonSecondary)`
   width: fit-content;
   ${({ theme }) => theme.mediaWidth.upToSmall`
     width: 48%;
@@ -98,7 +92,7 @@ export default function Pool() {
   const allV2PairsWithLiquidity = v2Pairs.map(([, pair]) => pair).filter((v2Pair): v2Pair is Pair => Boolean(v2Pair));
 
   return (
-    <>
+    <AppBody>
       <PageWrapper>
         <SwapPoolTabs active={'pool'} />
         <AutoColumn gap="lg" justify="center">
@@ -110,10 +104,10 @@ export default function Pool() {
                 </TYPE.mediumHeader>
               </HideSmall>
               <ButtonRow>
-                <ResponsiveButtonSecondary as={Link} padding="6px 8px" to="/create/ETH">
+                <ResponsiveButtonPrimary as={Link} padding="6px 10px" to="/create/ETH">
                   Create a pair
-                </ResponsiveButtonSecondary>
-                <ResponsiveButtonPrimary id="join-pool-button" as={Link} padding="6px 8px" to="/add/ETH">
+                </ResponsiveButtonPrimary>
+                <ResponsiveButtonPrimary id="join-pool-button" as={Link} padding="6px 10px" to="/add/ETH">
                   <Text fontWeight={500} fontSize={16}>
                     Add Liquidity
                   </Text>
@@ -142,13 +136,13 @@ export default function Pool() {
             ) : (
               <EmptyProposals>
                 <TYPE.body color={theme.text3} textAlign="center">
-                  No liquidity found.
+                  NO LIQUIDITY FOUND
                 </TYPE.body>
               </EmptyProposals>
             )}
           </AutoColumn>
         </AutoColumn>
       </PageWrapper>
-    </>
+    </AppBody>
   );
 }

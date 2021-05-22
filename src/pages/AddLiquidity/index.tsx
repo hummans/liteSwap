@@ -7,7 +7,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { Text } from 'rebass';
 import { ThemeContext } from 'styled-components';
 import { ButtonError, ButtonPrimary } from '../../components/Button';
-import { BlueCard, LightCard } from '../../components/Card';
+import { LightCard } from '../../components/Card';
 import { AutoColumn, ColumnCenter } from '../../components/Column';
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal';
 import CurrencyInputPanel from '../../components/CurrencyInputPanel';
@@ -314,7 +314,7 @@ export default function AddLiquidity({
             {noLiquidity ||
               (isCreate ? (
                 <ColumnCenter>
-                  <BlueCard>
+                  <LightCard>
                     <AutoColumn gap="10px">
                       <TYPE.link fontWeight={600} color={'primaryText1'}>
                         You are the first liquidity provider.
@@ -326,11 +326,11 @@ export default function AddLiquidity({
                         Once you are happy with the rate click supply to review.
                       </TYPE.link>
                     </AutoColumn>
-                  </BlueCard>
+                  </LightCard>
                 </ColumnCenter>
               ) : (
                 <ColumnCenter>
-                  <BlueCard>
+                  <LightCard>
                     <AutoColumn gap="10px">
                       <TYPE.link fontWeight={400} color={'primaryText1'}>
                         <b>Tip:</b> When you add liquidity, you will receive pool tokens representing your position.
@@ -338,7 +338,7 @@ export default function AddLiquidity({
                         at any time.
                       </TYPE.link>
                     </AutoColumn>
-                  </BlueCard>
+                  </LightCard>
                 </ColumnCenter>
               ))}
             <CurrencyInputPanel

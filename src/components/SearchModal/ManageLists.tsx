@@ -26,7 +26,6 @@ import useTheme from '../../hooks/useTheme';
 import ListToggle from '../Toggle/ListToggle';
 import Card from 'components/Card';
 import { CurrencyModalView } from './CurrencySearchModal';
-import { UNSUPPORTED_LIST_URLS } from 'constants/lists';
 
 const Wrapper = styled(Column)`
   width: 100%;
@@ -226,7 +225,7 @@ export function ManageLists({
     return listUrls
       .filter(listUrl => {
         // only show loaded lists, hide unsupported lists
-        return Boolean(lists[listUrl].current) && !Boolean(UNSUPPORTED_LIST_URLS.includes(listUrl));
+        return Boolean(lists[listUrl].current);
       })
       .sort((u1, u2) => {
         const { current: l1 } = lists[u1];

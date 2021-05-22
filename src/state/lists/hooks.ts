@@ -1,4 +1,3 @@
-import { UNSUPPORTED_LIST_URLS } from './../../constants/lists';
 import DEFAULT_TOKEN_LIST from '@uniswap/default-token-list';
 import { ChainId, Token } from '@uniswap/sdk';
 import { Tags, TokenInfo, TokenList } from '@uniswap/token-lists';
@@ -128,15 +127,13 @@ function useCombinedTokenMapFromUrls(urls: string[] | undefined): TokenAddressMa
 
 // filter out unsupported lists
 export function useActiveListUrls(): string[] | undefined {
-  return useSelector<AppState, AppState['lists']['activeListUrls']>(state => state.lists.activeListUrls)?.filter(
-    url => !UNSUPPORTED_LIST_URLS.includes(url)
-  );
+  return useSelector<AppState, AppState['lists']['activeListUrls']>(state => state.lists.activeListUrls);
 }
 
 export function useInactiveListUrls(): string[] {
   const lists = useAllLists();
   const allActiveListUrls = useActiveListUrls();
-  return Object.keys(lists).filter(url => !allActiveListUrls?.includes(url) && !UNSUPPORTED_LIST_URLS.includes(url));
+  return Object.keys(lists).filter(url => !allActiveListUrls?.includes(url));
 }
 
 // get all the tokens from active lists, combine with local default tokens
