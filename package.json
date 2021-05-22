@@ -1,8 +1,10 @@
 {
   "name": "liteswap",
   "description": "Liteswap",
-  "version": "0.5.0",
   "private": true,
+  "version": "0.5.0",
+  "license": "GPL-3.0-or-later",
+  "homepage": "https://noteternal.github.io/liteSwap/",
   "devDependencies": {
     "@ethersproject/experimental": "^5.0.1",
     "@popperjs/core": "^2.4.4",
@@ -93,7 +95,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app",
@@ -113,7 +117,6 @@
       "last 1 safari version"
     ]
   },
-  "license": "GPL-3.0-or-later",
   "dependencies": {
     "@uniswap/default-token-list": "^2.0.0"
   }
