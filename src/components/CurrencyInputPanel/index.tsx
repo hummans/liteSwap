@@ -21,14 +21,14 @@ const InputRow = styled.div<{ selected: boolean }>`
   padding: ${({ selected }) => (selected ? '0.8rem 0.6rem 0.8rem 1.1rem' : '0.8rem 0.8rem 0.8rem 1.1rem')};
 `;
 
-const CurrencySelect = styled.button<{ selected: boolean }>`
+const CurrencySelect = styled.button`
   align-items: center;
   height: 2.2rem;
   font-size: 20px;
   font-weight: 500;
-  border: 1px solid ${({ theme }) => theme.primary2} !important;
-  background-color: ${({ theme }) => theme.bg1};
-  color: ${({ selected, theme }) => (selected ? theme.text1 : theme.white)};
+  border: none;
+  background-color: ${({ theme }) => theme.bg3};
+  color: ${({ theme }) => theme.text1};
   border-radius: 12px;
   outline: none;
   cursor: pointer;
@@ -39,7 +39,7 @@ const CurrencySelect = styled.button<{ selected: boolean }>`
 
   :focus,
   :hover {
-    background-color: ${({ selected, theme }) => theme.primary2};
+    background-color: ${({ theme }) => theme.primary3};
   }
 `;
 
@@ -62,12 +62,12 @@ const Aligner = styled.span`
   justify-content: space-between;
 `;
 
-const StyledDropDown = styled(DropDown)<{ selected: boolean }>`
+const StyledDropDown = styled(DropDown)`
   margin: 0 0.25rem 0 0.5rem;
   height: 35%;
 
   path {
-    stroke: ${({ selected, theme }) => (selected ? theme.text1 : theme.white)};
+    stroke: ${({ theme }) => theme.text1};
     stroke-width: 1.5px;
   }
 `;
@@ -206,7 +206,6 @@ export default function CurrencyInputPanel({
             </>
           )}
           <CurrencySelect
-            selected={!!currency}
             className="open-currency-select-button"
             onClick={() => {
               if (!disableCurrencySelect) {
@@ -233,7 +232,7 @@ export default function CurrencyInputPanel({
                     : currency?.symbol) || t('Token')}
                 </StyledTokenName>
               )}
-              {!disableCurrencySelect && <StyledDropDown selected={!!currency} />}
+              {!disableCurrencySelect && <StyledDropDown />}
             </Aligner>
           </CurrencySelect>
         </InputRow>

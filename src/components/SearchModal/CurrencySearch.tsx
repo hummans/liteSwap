@@ -14,7 +14,6 @@ import CurrencyList from './CurrencyList';
 import { filterTokens } from './filtering';
 import { useTokenComparator } from './sorting';
 import { PaddedColumn, SearchInput, Separator } from './styleds';
-import AutoSizer from 'react-virtualized-auto-sizer';
 import styled from 'styled-components';
 import useToggle from 'hooks/useToggle';
 import { useOnClickOutside } from 'hooks/useOnClickOutside';
@@ -210,23 +209,19 @@ export function CurrencySearch({
         </Column>
       ) : filteredSortedTokens?.length > 0 || (showExpanded && inactiveTokens && inactiveTokens.length > 0) ? (
         <div style={{ flex: '1' }}>
-          <AutoSizer disableWidth>
-            {({ height }) => (
-              <CurrencyList
-                height={height}
-                showETH={showETH}
-                currencies={
-                  showExpanded && inactiveTokens ? filteredSortedTokens.concat(inactiveTokens) : filteredSortedTokens
-                }
-                onCurrencySelect={handleCurrencySelect}
-                otherCurrency={otherSelectedCurrency}
-                selectedCurrency={selectedCurrency}
-                fixedListRef={fixedList}
-                showImportView={showImportView}
-                setImportToken={setImportToken}
-              />
-            )}
-          </AutoSizer>
+          <CurrencyList
+            height={600}
+            showETH={showETH}
+            currencies={
+              showExpanded && inactiveTokens ? filteredSortedTokens.concat(inactiveTokens) : filteredSortedTokens
+            }
+            onCurrencySelect={handleCurrencySelect}
+            otherCurrency={otherSelectedCurrency}
+            selectedCurrency={selectedCurrency}
+            fixedListRef={fixedList}
+            showImportView={showImportView}
+            setImportToken={setImportToken}
+          />
         </div>
       ) : (
         <Column style={{ padding: '20px', height: '100%' }}>
