@@ -1,6 +1,6 @@
 pragma solidity =0.6.6;
 
-interface ILiteswapFactory {
+interface IFactory {
     event PairCreated(address indexed token0, address indexed token1, address pair, uint);
 
     function feeTo() external view returns (address);
@@ -16,7 +16,7 @@ interface ILiteswapFactory {
     function setFeeToSetter(address) external;
 }
 
-interface ILiteswapPair {
+interface IPair {
     event Approval(address indexed owner, address indexed spender, uint value);
     event Transfer(address indexed from, address indexed to, uint value);
 
@@ -67,7 +67,7 @@ interface ILiteswapPair {
     function initialize(address, address) external;
 }
 
-interface ILiteswapRouter1 {
+interface IFirstRouter {
     function factory() external pure returns (address);
     function WETH() external pure returns (address);
 
@@ -161,7 +161,7 @@ interface ILiteswapRouter1 {
     function getAmountsIn(uint amountOut, address[] calldata path) external view returns (uint[] memory amounts);
 }
 
-interface ILiteswapRouter2 is ILiteswapRouter1 {
+interface ISecondRouter is IFirstRouter {
     function removeLiquidityETHSupportingFeeOnTransferTokens(
         address token,
         uint liquidity,
@@ -224,7 +224,7 @@ interface IWETH {
     function withdraw(uint) external;
 }
 
-contract LiteswapRouter is ILiteswapRouter2 {
+contract LiteswapRouter is ISecondRouter {
     using SafeMath for uint;
 
     address public immutable override factory;
@@ -254,8 +254,8 @@ contract LiteswapRouter is ILiteswapRouter2 {
         uint amountBMin
     ) internal virtual returns (uint amountA, uint amountB) {
         // create the pair if it doesn't exist yet
-        if (ILiteswapFactory(factory).getPair(tokenA, tokenB) == address(0)) {
-            ILiteswapFactory(factory).createPair(tokenA, tokenB);
+        if (IFactory(factory).getPair(tokenA, tokenB) == address(0)) {
+            IFactory(factory).createPair(tokenA, tokenB);
         }
         (uint reserveA, uint reserveB) = LiteswapLibrary.getReserves(factory, tokenA, tokenB);
         if (reserveA == 0 && reserveB == 0) {
@@ -287,7 +287,7 @@ contract LiteswapRouter is ILiteswapRouter2 {
         address pair = LiteswapLibrary.pairFor(factory, tokenA, tokenB);
         TransferHelper.safeTransferFrom(tokenA, msg.sender, pair, amountA);
         TransferHelper.safeTransferFrom(tokenB, msg.sender, pair, amountB);
-        liquidity = ILiteswapPair(pair).mint(to);
+        liquidity = IPair(pair).mint(to);
     }
     function addLiquidityETH(
         address token,
@@ -309,7 +309,7 @@ contract LiteswapRouter is ILiteswapRouter2 {
         TransferHelper.safeTransferFrom(token, msg.sender, pair, amountToken);
         IWETH(WETH).deposit{value: amountETH}();
         assert(IWETH(WETH).transfer(pair, amountETH));
-        liquidity = ILiteswapPair(pair).mint(to);
+        liquidity = IPair(pair).mint(to);
         // refund dust eth, if any
         if (msg.value > amountETH) TransferHelper.safeTransferETH(msg.sender, msg.value - amountETH);
     }
@@ -325,8 +325,8 @@ contract LiteswapRouter is ILiteswapRouter2 {
         uint deadline
     ) public virtual override ensure(deadline) returns (uint amountA, uint amountB) {
         address pair = LiteswapLibrary.pairFor(factory, tokenA, tokenB);
-        ILiteswapPair(pair).transferFrom(msg.sender, pair, liquidity); // send liquidity to pair
-        (uint amount0, uint amount1) = ILiteswapPair(pair).burn(to);
+        IPair(pair).transferFrom(msg.sender, pair, liquidity); // send liquidity to pair
+        (uint amount0, uint amount1) = IPair(pair).burn(to);
         (address token0,) = LiteswapLibrary.sortTokens(tokenA, tokenB);
         (amountA, amountB) = tokenA == token0 ? (amount0, amount1) : (amount1, amount0);
         require(amountA >= amountAMin, 'LiteswapRouter: INSUFFICIENT_A_AMOUNT');
@@ -365,7 +365,7 @@ contract LiteswapRouter is ILiteswapRouter2 {
     ) external virtual override returns (uint amountA, uint amountB) {
         address pair = LiteswapLibrary.pairFor(factory, tokenA, tokenB);
         uint value = approveMax ? uint(-1) : liquidity;
-        ILiteswapPair(pair).permit(msg.sender, address(this), value, deadline, v, r, s);
+        IPair(pair).permit(msg.sender, address(this), value, deadline, v, r, s);
         (amountA, amountB) = removeLiquidity(tokenA, tokenB, liquidity, amountAMin, amountBMin, to, deadline);
     }
     function removeLiquidityETHWithPermit(
@@ -379,7 +379,7 @@ contract LiteswapRouter is ILiteswapRouter2 {
     ) external virtual override returns (uint amountToken, uint amountETH) {
         address pair = LiteswapLibrary.pairFor(factory, token, WETH);
         uint value = approveMax ? uint(-1) : liquidity;
-        ILiteswapPair(pair).permit(msg.sender, address(this), value, deadline, v, r, s);
+        IPair(pair).permit(msg.sender, address(this), value, deadline, v, r, s);
         (amountToken, amountETH) = removeLiquidityETH(token, liquidity, amountTokenMin, amountETHMin, to, deadline);
     }
 
@@ -416,7 +416,7 @@ contract LiteswapRouter is ILiteswapRouter2 {
     ) external virtual override returns (uint amountETH) {
         address pair = LiteswapLibrary.pairFor(factory, token, WETH);
         uint value = approveMax ? uint(-1) : liquidity;
-        ILiteswapPair(pair).permit(msg.sender, address(this), value, deadline, v, r, s);
+        IPair(pair).permit(msg.sender, address(this), value, deadline, v, r, s);
         amountETH = removeLiquidityETHSupportingFeeOnTransferTokens(
             token, liquidity, amountTokenMin, amountETHMin, to, deadline
         );
@@ -431,7 +431,7 @@ contract LiteswapRouter is ILiteswapRouter2 {
             uint amountOut = amounts[i + 1];
             (uint amount0Out, uint amount1Out) = input == token0 ? (uint(0), amountOut) : (amountOut, uint(0));
             address to = i < path.length - 2 ? LiteswapLibrary.pairFor(factory, output, path[i + 2]) : _to;
-            ILiteswapPair(LiteswapLibrary.pairFor(factory, input, output)).swap(
+            IPair(LiteswapLibrary.pairFor(factory, input, output)).swap(
                 amount0Out, amount1Out, to, new bytes(0)
             );
         }
@@ -537,7 +537,7 @@ contract LiteswapRouter is ILiteswapRouter2 {
         for (uint i; i < path.length - 1; i++) {
             (address input, address output) = (path[i], path[i + 1]);
             (address token0,) = LiteswapLibrary.sortTokens(input, output);
-            ILiteswapPair pair = ILiteswapPair(LiteswapLibrary.pairFor(factory, input, output));
+            IPair pair = IPair(LiteswapLibrary.pairFor(factory, input, output));
             uint amountInput;
             uint amountOutput;
             { // scope to avoid stack too deep errors
@@ -700,7 +700,7 @@ library LiteswapLibrary {
     // fetches and sorts the reserves for a pair
     function getReserves(address factory, address tokenA, address tokenB) internal view returns (uint reserveA, uint reserveB) {
         (address token0,) = sortTokens(tokenA, tokenB);
-        (uint reserve0, uint reserve1,) = ILiteswapPair(pairFor(factory, tokenA, tokenB)).getReserves();
+        (uint reserve0, uint reserve1,) = IPair(pairFor(factory, tokenA, tokenB)).getReserves();
         (reserveA, reserveB) = tokenA == token0 ? (reserve0, reserve1) : (reserve1, reserve0);
     }
 
