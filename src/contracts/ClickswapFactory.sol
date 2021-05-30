@@ -1,7 +1,7 @@
 
 pragma solidity =0.5.16;
 
-interface ILiteswapFactory {
+interface IFactory {
     event PairCreated(address indexed token0, address indexed token1, address pair, uint);
 
     function feeTo() external view returns (address);
@@ -17,7 +17,7 @@ interface ILiteswapFactory {
     function setFeeToSetter(address) external;
 }
 
-interface ILiteswapPair {
+interface IPair {
     event Approval(address indexed owner, address indexed spender, uint value);
     event Transfer(address indexed from, address indexed to, uint value);
 
@@ -68,7 +68,7 @@ interface ILiteswapPair {
     function initialize(address, address) external;
 }
 
-interface ILiteswapERC20 {
+interface IERC20 {
     event Approval(address indexed owner, address indexed spender, uint value);
     event Transfer(address indexed from, address indexed to, uint value);
 
@@ -106,11 +106,11 @@ interface IERC20 {
     function transferFrom(address from, address to, uint value) external returns (bool);
 }
 
-interface ILiteswapCallee {
-    function uniswapV2Call(address sender, uint amount0, uint amount1, bytes calldata data) external;
+interface ICallee {
+    function call(address sender, uint amount0, uint amount1, bytes calldata data) external;
 }
 
-contract LiteswapERC20 is ILiteswapERC20 {
+contract LiteswapERC20 is IERC20 {
     using SafeMath for uint;
 
     string public constant name = 'Liteswap LP';
@@ -200,7 +200,7 @@ contract LiteswapERC20 is ILiteswapERC20 {
     }
 }
 
-contract LiteswapPair is ILiteswapPair, LiteswapERC20 {
+contract LiteswapPair is IPair, LiteswapERC20 {
     using SafeMath  for uint;
     using UQ112x112 for uint224;
 
@@ -279,7 +279,7 @@ contract LiteswapPair is ILiteswapPair, LiteswapERC20 {
 
     // if fee is on, mint liquidity equivalent to 1/6th of the growth in sqrt(k)
     function _mintFee(uint112 _reserve0, uint112 _reserve1) private returns (bool feeOn) {
-        address feeTo = ILiteswapFactory(factory).feeTo();
+        address feeTo = IFactory(factory).feeTo();
         feeOn = feeTo != address(0);
         uint _kLast = kLast; // gas savings
         if (feeOn) {
@@ -361,7 +361,7 @@ contract LiteswapPair is ILiteswapPair, LiteswapERC20 {
             require(to != _token0 && to != _token1, 'Liteswap: INVALID_TO');
             if (amount0Out > 0) _safeTransfer(_token0, to, amount0Out); // optimistically transfer tokens
             if (amount1Out > 0) _safeTransfer(_token1, to, amount1Out); // optimistically transfer tokens
-            if (data.length > 0) ILiteswapCallee(to).uniswapV2Call(msg.sender, amount0Out, amount1Out, data);
+            if (data.length > 0) ICallee(to).call(msg.sender, amount0Out, amount1Out, data);
             balance0 = IERC20(_token0).balanceOf(address(this));
             balance1 = IERC20(_token1).balanceOf(address(this));
         }
@@ -392,7 +392,7 @@ contract LiteswapPair is ILiteswapPair, LiteswapERC20 {
     }
 }
 
-contract LiteswapFactory is ILiteswapFactory {
+contract LiteswapFactory is IFactory {
     bytes32 public constant INIT_CODE_HASH = keccak256(abi.encodePacked(type(LiteswapPair).creationCode));
     address public feeTo;
     address public feeToSetter;
@@ -420,7 +420,7 @@ contract LiteswapFactory is ILiteswapFactory {
         assembly {
             pair := create2(0, add(bytecode, 32), mload(bytecode), salt)
         }
-        ILiteswapPair(pair).initialize(token0, token1);
+        IPair(pair).initialize(token0, token1);
         getPair[token0][token1] = pair;
         getPair[token1][token0] = pair; // populate mapping in the reverse direction
         allPairs.push(pair);
