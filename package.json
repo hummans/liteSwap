@@ -52,7 +52,7 @@
     "i18next": "20.3.1",
     "i18next-browser-languagedetector": "6.1.2",
     "i18next-xhr-backend": "3.2.2",
-    "inter-ui": "3.19.1",
+    "inter-ui": "3.19.2",
     "jazzicon": "1.5.0",
     "lodash.flatmap": "4.5.0",
     "multicodec": "3.0.1",
