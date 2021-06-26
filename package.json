@@ -6,7 +6,7 @@
   "license": "GPL-3.0-or-later",
   "homepage": "https://noteternal.github.io/liteSwap/",
   "devDependencies": {
-    "@ethersproject/experimental": "5.0.1",
+    "@ethersproject/experimental": "5.4.0",
     "@popperjs/core": "2.9.2",
     "@reach/dialog": "0.15.0",
     "@reach/portal": "0.15.0",
